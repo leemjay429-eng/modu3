@@ -1,0 +1,1669 @@
+<!-- ══════════ 광복절 퀴즈 상세페이지 (임베드용) ══════════ -->
+<script>
+(function(){
+  try{
+    if(!document.querySelector('meta[name="viewport"]')){
+      var m=document.createElement('meta');
+      m.setAttribute('name','viewport');
+      m.setAttribute('content','width=device-width, initial-scale=1');
+      (document.head||document.getElementsByTagName('head')[0]||document.documentElement).appendChild(m);
+    }
+  }catch(e){}
+})();
+</script>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css');
+@font-face{font-family:'GBQAllimjang';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimAllimjangTTF-R.woff2') format('woff2');font-weight:400;font-display:swap;}
+@font-face{font-family:'GBQAllimjang';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimAllimjangTTF-B.woff2') format('woff2');font-weight:700;font-display:swap;}
+
+
+
+/* ══════════ 스코프 리셋 : .contents_div 내부에만 적용 ══════════ */
+.contents_div,
+.contents_div *,
+.contents_div *::before,
+.contents_div *::after{box-sizing:border-box;}
+.contents_div{
+  color:var(--gbq-ink);font-family:var(--gbq-body);
+  font-size:16px;line-height:1.75;text-align:left;
+  letter-spacing:normal;word-spacing:normal;text-transform:none;
+  -webkit-text-size-adjust:100%;
+}
+.contents_div p,.contents_div ul,.contents_div ol,.contents_div li,
+.contents_div dl,.contents_div dt,.contents_div dd,.contents_div figure,
+.contents_div h1,.contents_div h2,.contents_div h3,
+.contents_div h4,.contents_div h5{margin:0;padding:0;}
+.contents_div ul{list-style:none;}
+.contents_div img{max-width:100%;border:0;vertical-align:middle;}
+.contents_div a{text-decoration:none;color:inherit;}
+.contents_div button{margin:0;font-family:inherit;line-height:inherit;text-transform:none;}
+.contents_div .gbq-duo-box ol{list-style:decimal;}
+
+/* ── 제목: 학교안심 알림장 ── */
+
+
+
+.contents_div{
+  /* ── 기존 메인 컬러 그대로 유지 ── */
+  --gbq-red:#d4431f;
+  --gbq-red-bright:#f0553a;
+  --gbq-red-soft:#ffe1d8;
+  --gbq-blue:#3b77cc;
+  --gbq-blue-deep:#2b5aa6;
+  --gbq-blue-soft:#dceaff;
+  --gbq-yellow:#ffd75e;
+  --gbq-yellow-soft:#fff3cd;
+  --gbq-ink:#02051b;
+  --gbq-ink-soft:#6b7183;
+  --gbq-ink-faint:#a3a8b6;
+  --gbq-cream:#fffdf6;
+  --gbq-paper:#f6f6f7;
+
+  /* 상세페이지형 레이아웃용 톤 (기존 컬러 계열의 옅은 값) */
+  --gbq-bg:#fffaf5;
+  --gbq-line:#ece5dc;
+  --gbq-line-2:#ddd4c8;
+  --gbq-line-card:#0c0d1a;
+
+  --gbq-display:'GBQAllimjang','Pretendard',sans-serif;
+  --gbq-body:'Pretendard','Apple SD Gothic Neo',sans-serif;
+}
+.contents_div .gbq-page{max-width:800px;margin:0 auto;background:var(--gbq-bg);position:relative;overflow:hidden;}
+.contents_div h1,
+.contents_div h2,
+.contents_div h3,
+.contents_div h4,
+.contents_div h5{font-family:var(--gbq-display);font-weight:700;margin:0;}
+.contents_div button{font-family:inherit;}
+.contents_div .gbq-sec{padding:70px 46px;position:relative;}
+
+/* ══════════ 섹션 헤더 (레퍼런스: 큰 영문 + 오른쪽 국문 캡션) ══════════ */
+.contents_div .gbq-shead{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:18px;
+  padding-bottom:15px;border-bottom:2px dashed var(--gbq-line-2);margin-bottom:34px;
+}
+.contents_div .gbq-stitle{
+  font-size:clamp(28px,4.7vw,38px);line-height:1.15;letter-spacing:-.02em;position:relative;white-space:nowrap;
+}
+.contents_div .gbq-stitle em{font-style:normal;color:var(--gbq-red);}
+.contents_div .gbq-stitle .gbq-b{color:var(--gbq-blue);}
+.contents_div .gbq-stitle::before{
+  content:"✦";position:absolute;top:-16px;right:-20px;font-size:15px;color:var(--gbq-yellow);
+  font-family:var(--gbq-body);
+}
+.contents_div .gbq-scap.gbq-lv{font-size:15px;letter-spacing:.02em;}
+.contents_div .gbq-scap i{font-style:normal;color:var(--gbq-red);letter-spacing:.1em;margin-left:2px;}
+.contents_div .gbq-scap{
+  margin:0 0 5px;font-family:var(--gbq-display);font-weight:400;font-size:16px;
+  color:var(--gbq-ink-soft);text-align:right;line-height:1.4;
+}
+.contents_div .gbq-scap .gbq-brm{display:none;}
+.contents_div .gbq-scap .gbq-brw{display:inline;}
+
+/* ══════════ 공통 파츠 ══════════ */
+.contents_div .gbq-imgslot{
+  border:2px dashed var(--gbq-line-card);background:#fff;border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  color:var(--gbq-ink-faint);font-family:var(--gbq-display);font-weight:400;font-size:15px;
+  text-align:center;padding:14px;
+}
+.contents_div .gbq-imgslot small{font-family:var(--gbq-body);font-size:12px;letter-spacing:.02em;}
+.contents_div .gbq-imgslot.gbq-has-img{position:relative;display:block;padding:0;overflow:hidden;border-style:solid;}
+.contents_div .gbq-imgslot.gbq-has-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+.contents_div .gbq-num{
+  flex:none;width:26px;height:26px;border-radius:50%;background:var(--gbq-red);color:#fff;
+  font-family:var(--gbq-display);font-weight:700;font-size:12.5px;
+  display:flex;align-items:center;justify-content:center;letter-spacing:.02em;
+}
+.contents_div .gbq-num.gbq-b{background:var(--gbq-blue);}
+.contents_div .gbq-tag{
+  display:inline-block;font-family:var(--gbq-display);font-weight:700;font-size:12.5px;
+  letter-spacing:.08em;color:var(--gbq-red);background:var(--gbq-red-soft);
+  border-radius:999px;padding:3px 11px;
+}
+.contents_div .gbq-tag.gbq-b{color:var(--gbq-blue-deep);background:var(--gbq-blue-soft);}
+.contents_div .gbq-card{background:#fff;border:2px solid var(--gbq-line-card);border-radius:22px;}
+.contents_div .gbq-note{
+  margin:26px 0 0;border:2px dashed var(--gbq-line-2);border-radius:16px;background:var(--gbq-yellow-soft);
+  padding:14px 20px;font-family:var(--gbq-display);font-weight:400;font-size:17px;color:#8a5a18;text-align:center;
+}
+.contents_div .gbq-note b{color:var(--gbq-red);font-weight:700;}
+
+/* ══════════ HERO ══════════ */
+.contents_div .gbq-hero{padding:0;background:#fffbf0;position:relative;overflow:hidden;}
+.contents_div .gbq-hero-inner{padding:56px 46px 0;text-align:center;position:relative;z-index:6;}
+.contents_div .gbq-eyebrow{
+  display:inline-block;padding:2px 20px;border:2px solid var(--gbq-red);border-radius:999px;
+  font-family:var(--gbq-display);font-weight:400;font-size:17px;line-height:1.6;color:var(--gbq-red);
+  margin:0 0 30px;
+}
+.contents_div .gbq-htitle{font-size:clamp(38px,8.6vw,72px);line-height:1.16;letter-spacing:-.015em;}
+.contents_div .gbq-htitle .gbq-l1{display:block;color:var(--gbq-ink);font-size:calc(1em + 10px);}
+.contents_div .gbq-htitle .gbq-l2{display:block;color:var(--gbq-red);font-size:calc(1em + 7px);}
+.contents_div .gbq-hero-sub{
+  font-family:var(--gbq-display);font-weight:400;font-size:clamp(19px,3.1vw,25px);color:var(--gbq-ink);
+  margin:20px 0 0;line-height:1.55;
+}
+.contents_div .gbq-hero-sub b{color:var(--gbq-red);font-weight:700;}
+
+/* ── 바로가기 (퀴즈 안내 위) ── */
+.contents_div .gbq-jump-nav{
+  display:flex;gap:12px;padding:24px 46px;
+  background:#ffdf88;
+  border-top:2px solid #e8b93f;border-bottom:2px solid #e8b93f;
+  /* 히어로 아트 높이가 소수점으로 떨어질 때 생기는 1px 틈을 덮는다 */
+  position:relative;z-index:2;margin-top:-1px;
+}
+/* nav 아래 회색 구분선이 노란 보더와 겹쳐 보이지 않도록 제거 */
+.contents_div .gbq-jump-nav + .gbq-guide{border-top:0;}
+.contents_div .gbq-jump-btn{
+  flex:1 1 0;position:relative;display:flex;align-items:center;gap:11px;
+  min-width:0;height:66px;padding:0 18px;text-decoration:none;
+  background:#fff;border:2px solid #e8b93f;border-radius:18px;
+  color:var(--gbq-ink);transition:background-color .16s ease,transform .16s ease;
+}
+.contents_div .gbq-jump-btn .gbq-jb-ic{
+  flex:none;width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--gbq-body);font-size:14px;font-weight:700;color:#fff;line-height:1;
+}
+.contents_div .gbq-jump-btn.gbq-a .gbq-jb-ic{background:var(--gbq-red);}
+.contents_div .gbq-jump-btn.gbq-b .gbq-jb-ic{background:var(--gbq-blue);}
+.contents_div .gbq-jump-btn .gbq-jb-tx{display:flex;flex-direction:column;gap:1px;min-width:0;}
+.contents_div .gbq-jump-btn .gbq-jb-lb{
+  font-family:var(--gbq-body);font-weight:400;font-size:11.5px;letter-spacing:.08em;
+  color:var(--gbq-ink-faint);line-height:1.2;
+}
+.contents_div .gbq-jump-btn.gbq-a .gbq-jb-lb{color:var(--gbq-red);}
+.contents_div .gbq-jump-btn.gbq-b .gbq-jb-lb{color:var(--gbq-blue);}
+.contents_div .gbq-jump-btn .gbq-jb-nm{
+  font-family:var(--gbq-body);font-weight:600;font-size:16.5px;letter-spacing:-.01em;
+  line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.contents_div .gbq-jump-btn .gbq-jb-ar{
+  margin-left:auto;flex:none;width:18px;height:18px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gbq-ink-faint);transition:transform .16s ease,color .16s ease;
+}
+.contents_div .gbq-jump-btn .gbq-jb-ar svg{display:block;width:100%;height:100%;}
+.contents_div .gbq-jump-btn:hover{transform:translateY(-2px);}
+.contents_div .gbq-jump-btn.gbq-a:hover{background:var(--gbq-red-soft);}
+.contents_div .gbq-jump-btn.gbq-b:hover{background:var(--gbq-blue-soft);}
+.contents_div .gbq-jump-btn.gbq-a:hover .gbq-jb-ar{color:var(--gbq-red);transform:translateY(2px);}
+.contents_div .gbq-jump-btn.gbq-b:hover .gbq-jb-ar{color:var(--gbq-blue);transform:translateY(2px);}
+.contents_div .gbq-hero-frame{
+  margin:36px 46px 0;border:2px solid var(--gbq-line-card);border-radius:26px;background:#fff;
+  padding:20px;
+}
+.contents_div .gbq-hero-frame .gbq-imgslot{height:250px;border-radius:16px;background:var(--gbq-paper);}
+
+/* ── 히어로 아트 : 무궁화(기본 세팅) + 남자·여자·새(등장 → 플로팅) ── */
+.contents_div .gbq-hero-art{
+  position:relative;z-index:1;
+  width:100%;aspect-ratio:1600/1470;
+  margin-top:calc(-30% - 30px);        /* 빈 상단을 타이틀과 겹치게 끌어올림 */
+  pointer-events:none;user-select:none;
+}
+.contents_div .gbq-hero-art .gbq-lyr{position:absolute;inset:0;will-change:transform,opacity;}
+.contents_div .gbq-hero-art .gbq-lyr img{
+  display:block;width:100%;height:100%;
+  object-fit:contain;object-position:center bottom;
+  will-change:transform;
+}
+
+/* 겹침 순서 : 남자 → 여자 → 새 → 무궁화(최상단) */
+.contents_div .gbq-lyr-boy{z-index:1;}
+.contents_div .gbq-lyr-girl{z-index:2;}
+.contents_div .gbq-lyr-bird{z-index:3;}
+.contents_div .gbq-lyr-bloom{z-index:4;}                 /* 애니메이션 없이 처음부터 깔려 있음 */
+
+/* ① 등장 : 아래에서 위로 통! (무궁화 사이로 솟아오름) */
+@keyframes gbq-hero-pop{
+  0%  {opacity:0;transform:translate3d(0,14%,0) scale(.965);}
+  22% {opacity:1;}
+  58% {transform:translate3d(0,-2.6%,0) scale(1.018);}
+  78% {transform:translate3d(0,.5%,0) scale(.999);}
+  91% {transform:translate3d(0,-.18%,0) scale(1.001);}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1);}
+}
+@keyframes gbq-hero-fly-bird{
+  0%  {opacity:0;transform:translate3d(-11%,0,0) scale(.975);}
+  25% {opacity:1;}
+  68% {transform:translate3d(.5%,0,0) scale(1.004);}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1);}
+}
+.contents_div .gbq-lyr-boy{animation:gbq-hero-pop .78s cubic-bezier(.2,.72,.3,1) .18s backwards;}
+.contents_div .gbq-lyr-girl{animation:gbq-hero-pop .78s cubic-bezier(.2,.72,.3,1) .46s backwards;}
+.contents_div .gbq-lyr-bird{animation:gbq-hero-fly-bird .9s cubic-bezier(.32,.58,.36,1) .8s backwards;}
+
+/* ② 상시 : 셋 다 위아래 둥둥 (0에서 시작·종료 → 등장 끝과 이음새 없음) */
+@keyframes gbq-bob-s{
+  0%,100%{transform:translate3d(0,0,0);}
+  50%    {transform:translate3d(0,-1.4%,0);}
+}
+@keyframes gbq-bob-m{
+  0%,100%{transform:translate3d(0,0,0);}
+  50%    {transform:translate3d(0,-1.7%,0);}
+}
+@keyframes gbq-bob-l{
+  0%,100%{transform:translate3d(0,0,0);}
+  50%    {transform:translate3d(0,-2.3%,0);}
+}
+.contents_div .gbq-lyr-boy  img{animation:gbq-bob-s 3.4s ease-in-out  .96s infinite;}
+.contents_div .gbq-lyr-girl img{animation:gbq-bob-m 3.0s ease-in-out 1.24s infinite;}
+.contents_div .gbq-lyr-bird img{animation:gbq-bob-l 2.8s ease-in-out 1.7s infinite;}
+
+@media (prefers-reduced-motion:reduce){
+  .contents_div .gbq-hero-art .gbq-lyr,
+.contents_div .gbq-hero-art .gbq-lyr img{animation:none !important;}
+}
+
+/* ══════════ GUIDE ══════════ */
+.contents_div .gbq-guide{background:var(--gbq-cream);border-top:2px solid var(--gbq-line);border-bottom:2px solid var(--gbq-line);}
+.contents_div .gbq-lead{
+  margin:0 0 26px;font-family:var(--gbq-body);font-weight:400;font-size:16px;
+  color:var(--gbq-ink-soft);line-height:1.6;
+}
+.contents_div .gbq-lead b{font-family:var(--gbq-display);font-size:20px;line-height:1.5;color:var(--gbq-ink);font-weight:700;}
+.contents_div .gbq-guide-band{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.contents_div .gbq-guide-band .gbq-imgslot{height:190px;}
+.contents_div .gbq-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px;list-style:none;padding:0;}
+.contents_div .gbq-steps li{text-align:center;position:relative;}
+.contents_div .gbq-steps li:not(:last-child)::after{
+  content:"→";position:absolute;right:-14px;top:6px;color:var(--gbq-line-2);font-size:17px;
+}
+.contents_div .gbq-steps .gbq-num{margin:0 auto 9px;}
+.contents_div .gbq-steps b{display:block;font-family:var(--gbq-display);font-weight:700;font-size:17.5px;margin-bottom:3px;}
+.contents_div .gbq-steps p{margin:0;font-size:15px;color:var(--gbq-ink-soft);line-height:1.6;}
+/* 웹에서만 보이는 상세 문구 / 모바일에서만 쓰는 줄바꿈 */
+.contents_div .gbq-w-only{display:inline;}
+.contents_div .gbq-m-only{display:none;}
+.contents_div .gbq-m-br{display:none;}
+
+/* ══════════ 라운드 공통 ══════════ */
+.contents_div .gbq-round-bar{
+  display:flex;align-items:center;gap:11px;margin-bottom:20px;
+}
+.contents_div .gbq-round-bar .gbq-rb-tag{
+  font-family:var(--gbq-display);font-weight:700;font-size:12px;letter-spacing:.1em;color:#fff;
+  background:var(--gbq-ink);border-radius:999px;padding:4px 14px;
+}
+.contents_div .gbq-round-bar .gbq-rb-name{font-size:18px;flex:1;font-family:var(--gbq-display);font-weight:700;}
+
+.contents_div .gbq-q{position:relative;background:#fff;border:2px solid var(--gbq-line-card);border-radius:22px;padding:22px 24px;}
+.contents_div .gbq-q.gbq-correct{border-color:var(--gbq-red);}
+.contents_div .gbq-q.gbq-wrong{border-color:var(--gbq-blue);}
+.contents_div .gbq-qtop{display:flex;align-items:flex-start;gap:11px;margin-bottom:12px;}
+.contents_div .gbq-qtop .gbq-num{margin-top:1px;}
+.contents_div .gbq-qtop .gbq-qtext{flex:1;min-width:0;}
+.contents_div .gbq-qtop .gbq-stamp{flex:none;margin-left:auto;}
+.contents_div .gbq-qtext{margin:0;font-size:17px;font-weight:600;line-height:1.6;letter-spacing:-.01em;word-break:keep-all;overflow-wrap:break-word;}
+.contents_div .gbq-stamp{
+  display:none;font-family:var(--gbq-display);font-weight:700;font-size:12px;letter-spacing:.06em;
+  border-radius:999px;padding:3px 13px;
+}
+.contents_div .gbq-q.gbq-graded .gbq-stamp{display:inline-block;}
+.contents_div .gbq-q.gbq-correct .gbq-stamp{background:var(--gbq-red);color:#fff;}
+.contents_div .gbq-q.gbq-wrong .gbq-stamp{background:var(--gbq-blue);color:#fff;}
+.contents_div .gbq-solution{
+  display:none;margin-top:16px;padding-top:14px;border-top:2px dashed var(--gbq-line-2);
+  font-size:15px;color:var(--gbq-ink-soft);line-height:1.65;
+}
+.contents_div .gbq-q.gbq-graded .gbq-solution{display:block;}
+.contents_div .gbq-solution b{font-family:var(--gbq-display);font-weight:700;color:var(--gbq-red);margin-right:7px;}
+.contents_div .gbq-q.gbq-graded button{pointer-events:none;}
+
+/* ROUND 01 : O/X 라인업 그리드 */
+.contents_div .gbq-lineup{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.contents_div .gbq-lineup .gbq-q{display:flex;flex-direction:column;}
+.contents_div .gbq-lineup .gbq-qtext{min-height:calc(17px * 1.6 * 2);}
+.contents_div .gbq-lineup .gbq-solution{
+  line-height:25px;
+  min-height:calc(25px * 2 + 14px + 2px);   /* 2줄 + 상단 패딩 + 점선 → 1줄짜리도 같은 높이 */
+}
+.contents_div .gbq-ox{display:flex;gap:10px;margin-top:auto;padding-top:16px;}
+.contents_div .gbq-ox button{
+  flex:1;height:52px;border:2px solid var(--gbq-line-2);border-radius:14px;background:#fffbe9;
+  font-family:var(--gbq-display);font-weight:700;font-size:22px;color:var(--gbq-ink);cursor:pointer;
+  transition:all .14s ease;
+}
+.contents_div .gbq-ox button:hover{border-color:var(--gbq-ink);color:var(--gbq-ink);}
+.contents_div .gbq-ox button[data-v="O"].gbq-on{background:var(--gbq-red);border-color:var(--gbq-red);color:#fff;}
+.contents_div .gbq-ox button[data-v="X"].gbq-on{background:var(--gbq-blue);border-color:var(--gbq-blue);color:#fff;}
+.contents_div .gbq-q.gbq-graded .gbq-ox button.gbq-answer{background:var(--gbq-yellow);border-color:var(--gbq-yellow);color:var(--gbq-ink);}
+.contents_div .gbq-next-card{
+  border:2px dashed var(--gbq-line-2);border-radius:22px;background:var(--gbq-cream);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:24px;
+}
+.contents_div .gbq-next-card b{font-family:var(--gbq-display);font-weight:700;font-size:24px;}
+.contents_div .gbq-next-card span{font-size:15px;color:var(--gbq-ink-soft);}
+.contents_div .gbq-next-card i{font-style:normal;font-size:22px;color:var(--gbq-yellow);}
+
+/* ROUND 02 : 4지선다 */
+.contents_div .gbq-mcq-list{display:grid;gap:16px;}
+.contents_div .gbq-qhead{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.contents_div .gbq-qtag{
+  flex:none;font-family:var(--gbq-display);font-weight:700;font-size:13px;letter-spacing:.06em;line-height:1.2;
+  color:var(--gbq-blue-deep);background:var(--gbq-blue-soft);border-radius:999px;padding:4px 13px;
+  margin-top:1.8px;   /* 텍스트 첫 줄(27.2px)의 세로 중앙에 캡슐(23.6px)을 맞춤 */
+}
+.contents_div .gbq-choices{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.contents_div .gbq-choices button{
+  display:flex;align-items:center;gap:9px;text-align:left;width:100%;
+  border:2px solid var(--gbq-line);border-radius:14px;background:#fffbe9;padding:10px 14px;
+  font-size:16px;color:var(--gbq-ink);cursor:pointer;line-height:1.5;
+  transition:background-color .14s ease,border-color .14s ease,color .14s ease;
+}
+.contents_div .gbq-choices button:hover{border-color:var(--gbq-ink);}
+.contents_div .gbq-mcq-list > .gbq-q{min-width:0;}
+.contents_div .gbq-photoq > div{min-width:0;}
+.contents_div .gbq-photoq .gbq-choices button{white-space:nowrap;min-width:0;overflow:hidden;}
+.contents_div .gbq-photoq .gbq-choices button .gbq-ctext{display:inline-block;}
+.contents_div .gbq-choices .gbq-mark{
+  flex:none;width:23px;height:23px;border-radius:50%;background:var(--gbq-ink);border:2px solid var(--gbq-ink);
+  color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--gbq-display);font-weight:700;line-height:1;
+}
+.contents_div .gbq-choices button.gbq-on{background:var(--gbq-red-soft);border-color:var(--gbq-red);}
+.contents_div .gbq-choices button.gbq-on .gbq-mark{background:var(--gbq-red);border-color:var(--gbq-red);color:#fff;}
+.contents_div .gbq-q.gbq-graded .gbq-choices button.gbq-answer{background:var(--gbq-yellow-soft);border-color:var(--gbq-yellow);}
+.contents_div .gbq-q.gbq-graded .gbq-choices button.gbq-answer .gbq-mark{background:var(--gbq-yellow);border-color:var(--gbq-yellow);color:var(--gbq-ink);}
+
+/* ── 채점 후 : 기본은 전부 무채색 ── */
+.contents_div .gbq-q.gbq-graded.gbq-correct,
+.contents_div .gbq-q.gbq-graded.gbq-wrong{border-color:var(--gbq-line-card);}
+.contents_div .gbq-q.gbq-graded .gbq-qtop .gbq-num{background:var(--gbq-ink-faint);}
+.contents_div .gbq-q.gbq-graded .gbq-qtag{background:var(--gbq-paper);color:var(--gbq-ink-faint);}
+.contents_div .gbq-q.gbq-graded .gbq-imgslot img{filter:grayscale(1);}
+.contents_div .gbq-q.gbq-graded .gbq-stamp{background:var(--gbq-ink-faint);color:#fff;}
+.contents_div .gbq-q.gbq-graded .gbq-solution b{color:var(--gbq-ink-faint);}
+
+/* 내가 고른 답 — 회색 */
+.contents_div .gbq-q.gbq-graded .gbq-ox button.gbq-on{background:var(--gbq-ink-faint);border-color:var(--gbq-ink-faint);color:#fff;}
+.contents_div .gbq-q.gbq-graded .gbq-choices button.gbq-on{background:var(--gbq-paper);border-color:var(--gbq-ink-faint);}
+.contents_div .gbq-q.gbq-graded .gbq-choices button.gbq-on .gbq-mark{background:var(--gbq-ink-faint);border-color:var(--gbq-ink-faint);color:#fff;}
+
+/* 정답 카드 — 정답 표시까지 회색. 색이 하나도 남지 않는다 */
+.contents_div .gbq-q.gbq-graded.gbq-correct .gbq-ox button.gbq-answer{background:var(--gbq-ink-faint);border-color:var(--gbq-ink-faint);color:#fff;}
+.contents_div .gbq-q.gbq-graded.gbq-correct .gbq-choices button.gbq-answer{background:var(--gbq-paper);border-color:var(--gbq-ink-faint);}
+.contents_div .gbq-q.gbq-graded.gbq-correct .gbq-choices button.gbq-answer .gbq-mark{background:var(--gbq-ink-faint);border-color:var(--gbq-ink-faint);color:#fff;}
+
+/* 오답 카드 — 오답 배지와 정답 표시만 빨강 */
+.contents_div .gbq-q.gbq-graded.gbq-wrong .gbq-stamp{background:var(--gbq-red);color:#fff;}
+.contents_div .gbq-q.gbq-graded.gbq-wrong .gbq-solution b{color:var(--gbq-red);}
+.contents_div .gbq-q.gbq-graded.gbq-wrong .gbq-ox button.gbq-answer{background:var(--gbq-red);border-color:var(--gbq-red);color:#fff;}
+.contents_div .gbq-q.gbq-graded.gbq-wrong .gbq-choices button.gbq-answer{background:var(--gbq-red-soft);border-color:var(--gbq-red);}
+.contents_div .gbq-q.gbq-graded.gbq-wrong .gbq-choices button.gbq-answer .gbq-mark{background:var(--gbq-red);border-color:var(--gbq-red);color:#fff;}
+
+/* ROUND 03 : 사진 문제 */
+.contents_div .gbq-photoq{display:grid;grid-template-columns:270px 1fr;gap:22px;align-items:stretch;}
+.contents_div .gbq-photoq .gbq-imgslot{height:100%;min-height:203px;background:var(--gbq-paper);}
+.contents_div .gbq-photoq .gbq-choices{grid-template-columns:1fr;}
+.contents_div .gbq-photoq .gbq-solution{margin-top:14px;}
+
+/* ══════════ SCORE ══════════ */
+.contents_div .gbq-score{background:var(--gbq-cream);border-top:2px solid var(--gbq-line);border-bottom:2px solid var(--gbq-line);}
+.contents_div .gbq-score-box{
+  background:#fff;border:2px solid var(--gbq-line-card);border-radius:24px;padding:34px 30px;text-align:center;
+}
+.contents_div .gbq-progress{
+  font-family:var(--gbq-display);font-weight:400;font-size:17px;color:var(--gbq-ink-soft);margin:0 0 18px;
+}
+.contents_div .gbq-progress b{font-family:var(--gbq-display);font-weight:700;color:var(--gbq-red);font-size:22px;}
+.contents_div .gbq-btn{
+  background:var(--gbq-red);color:#fff;border:none;border-radius:999px;
+  font-family:var(--gbq-display);font-weight:700;font-size:18px;padding:15px 52px;cursor:pointer;
+  transition:all .14s ease;
+}
+.contents_div .gbq-btn:hover{background:var(--gbq-red-bright);}
+.contents_div .gbq-btn:disabled{background:#d6d1c9;cursor:not-allowed;}
+.contents_div .gbq-btn.gbq-ghost{background:#fff;color:var(--gbq-ink);border:2px solid var(--gbq-line-2);font-size:15px;padding:11px 26px;}
+.contents_div .gbq-btn.gbq-ghost:hover{background:var(--gbq-yellow-soft);border-color:var(--gbq-yellow);}
+
+.contents_div .gbq-result{display:none;margin-top:30px;padding-top:28px;border-top:2px dashed var(--gbq-line-2);}
+.contents_div .gbq-result.gbq-show{display:block;}
+.contents_div .gbq-result-card{display:flex;gap:26px;align-items:center;text-align:left;}
+.contents_div .gbq-pole{width:104px;height:150px;flex:none;}
+.contents_div .gbq-pole svg{width:100%;height:100%;overflow:visible;}
+.contents_div .gbq-flag-group{transition:transform 1.3s cubic-bezier(.22,.9,.24,1);}
+.contents_div .gbq-result-score{font-family:var(--gbq-display);font-weight:400;font-size:17px;color:var(--gbq-ink-soft);margin:0;}
+.contents_div .gbq-result-score b{font-family:var(--gbq-display);font-weight:700;color:var(--gbq-red);font-size:44px;line-height:1;}
+.contents_div .gbq-result-grade{font-family:var(--gbq-display);font-weight:700;font-size:23px;margin:5px 0 5px;}
+.contents_div .gbq-result-msg{margin:0;font-size:15.5px;color:var(--gbq-ink-soft);line-height:1.6;}
+
+/* 등급 : 레퍼런스 OPTION & PRICE 행 스타일 */
+.contents_div .gbq-tiers{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:26px;
+  text-align:center;align-items:stretch;
+}
+.contents_div .gbq-tier{
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  border:2px solid var(--gbq-line);border-radius:18px;
+  background:var(--gbq-bg);padding:15px 10px;transition:all .2s ease;
+}
+.contents_div .gbq-tier .gbq-num{background:var(--gbq-line-2);}
+.contents_div .gbq-tier-body{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.contents_div .gbq-tier-body .gbq-tag{background:var(--gbq-paper);color:var(--gbq-ink-faint);letter-spacing:-.01em;}
+.contents_div .gbq-tier-body p{
+  margin:0;font-size:13.5px;line-height:1.5;color:var(--gbq-ink-soft);word-break:keep-all;
+  display:flex;align-items:center;justify-content:center;
+  min-height:calc(13.5px * 1.5 * 3);   /* 가장 긴 항목(3줄) 높이 확보 → 짧은 항목은 세로 가운데 */
+}
+.contents_div .gbq-tier-res{
+  font-family:var(--gbq-body);font-weight:700;font-size:14px;line-height:20px;color:var(--gbq-ink-faint);
+  padding-top:9px;border-top:2px dashed var(--gbq-line-2);width:100%;word-break:keep-all;
+  display:flex;align-items:center;justify-content:center;
+  min-height:calc(20px * 2 + 9px + 2px);   /* 2줄 + 상단 패딩 + 점선 → 1줄짜리도 같은 높이 */
+}
+.contents_div .gbq-tier.gbq-now{background:var(--gbq-yellow-soft);border-color:var(--gbq-yellow);}
+.contents_div .gbq-tier.gbq-now .gbq-num{background:var(--gbq-red);}
+.contents_div .gbq-tier.gbq-now .gbq-tag{background:var(--gbq-red-soft);color:var(--gbq-red);}
+.contents_div .gbq-tier.gbq-now .gbq-tier-res{color:var(--gbq-ink);}
+.contents_div .gbq-result-actions{margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+/* ══════════ MORE : 게양법 ══════════ */
+.contents_div .gbq-detail{display:grid;grid-template-columns:285px 1fr;gap:20px;align-items:stretch;}
+.contents_div .gbq-detail .gbq-flagfig{height:268px;}
+.contents_div .gbq-detail-body{display:flex;flex-direction:column;justify-content:space-between;}
+/* 체크 문구가 한 줄에 들어가도록 본문 컬럼 타이포 축소 */
+.contents_div .gbq-detail-body .gbq-checks li{font-size:15px;gap:9px;padding:10px 0;white-space:normal;word-break:keep-all;}
+.contents_div .gbq-detail-body .gbq-checks li::before{width:21px;height:21px;border-radius:7px;font-size:12.5px;margin-top:2px;}
+.contents_div .gbq-detail-body .gbq-linkbar a{font-size:14.5px;padding:11px 14px;}
+.contents_div .gbq-detail .gbq-imgslot{height:290px;background:var(--gbq-paper);}
+
+/* ── 태극기 게양법 도해 ── */
+.contents_div .gbq-flagfig{
+  margin:0;height:300px;padding:20px 20px 14px;background:#fff;
+  border:2px solid var(--gbq-line-card);border-radius:18px;
+  display:flex;flex-direction:column;gap:9px;overflow:hidden;
+}
+.contents_div .gbq-ff-labels{position:relative;height:36px;}   /* 각 깃발 중심 위에 배치 */
+.contents_div .gbq-ff-labels > div{
+  position:absolute;top:0;transform:translateX(-50%);white-space:nowrap;
+  display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;
+}
+.contents_div .gbq-ff-labels .gbq-l1{left:25.2%;}
+.contents_div .gbq-ff-labels .gbq-l2{left:72.8%;}
+.contents_div .gbq-ff-labels b{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--gbq-body);font-weight:600;font-size:13.5px;letter-spacing:-.01em;color:var(--gbq-ink);
+}
+.contents_div .gbq-ff-labels b::before{content:"";width:6px;height:6px;border-radius:50%;flex:none;}
+.contents_div .gbq-ff-labels .gbq-l1 b::before{background:var(--gbq-red);}
+.contents_div .gbq-ff-labels .gbq-l2 b::before{background:var(--gbq-blue);}
+.contents_div .gbq-ff-labels small{font-family:var(--gbq-body);font-size:11.5px;color:var(--gbq-ink-soft);line-height:1.35;}
+.contents_div .gbq-ff-img{flex:1;min-height:0;}
+.contents_div .gbq-ff-img img{display:block;width:100%;height:100%;object-fit:contain;}
+.contents_div .gbq-checks{list-style:none;margin:0;padding:0;display:grid;gap:0;}
+.contents_div .gbq-checks li{
+  display:flex;gap:11px;font-size:16px;line-height:1.6;align-items:flex-start;padding:11px 0;
+}
+.contents_div .gbq-checks li+li{border-top:1px solid #bcd8f5;}
+.contents_div .gbq-checks li:first-child{padding-top:0;}
+.contents_div .gbq-checks li:last-child{padding-bottom:0;}
+.contents_div .gbq-checks li::before{
+  content:"✓";flex:none;
+  width:23px;height:23px;border-radius:8px;
+  background:var(--gbq-yellow-soft);border:0;
+  color:var(--gbq-red);font-weight:700;font-size:13px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  margin-top:3px;
+}
+.contents_div .gbq-spec{margin:26px 0 0;border-top:2px dashed var(--gbq-line-2);border-bottom:2px dashed var(--gbq-line-2);padding:6px 0;}
+.contents_div .gbq-spec div{display:flex;gap:16px;align-items:baseline;padding:10px 4px;}
+.contents_div .gbq-spec div+div{border-top:2px solid var(--gbq-line);}
+.contents_div .gbq-spec dt{
+  flex:none;width:96px;font-family:var(--gbq-display);font-weight:700;font-size:12px;letter-spacing:.06em;
+  color:var(--gbq-red);border:2px solid var(--gbq-red-soft);background:var(--gbq-red-soft);
+  border-radius:999px;padding:2px 0;text-align:center;
+}
+.contents_div .gbq-spec dd{margin:0;font-size:16px;color:var(--gbq-ink-soft);}
+.contents_div .gbq-linkbar{margin-top:24px;display:grid;gap:9px;}
+.contents_div .gbq-spots+.gbq-linkbar{grid-template-columns:1fr;}
+.contents_div .gbq-linkbar a{
+  display:flex;align-items:center;gap:11px;text-decoration:none;color:#12315f;
+  border:2px solid var(--gbq-line-card);border-radius:14px;background:#fff;padding:12px 16px;
+  font-size:15px;font-weight:600;line-height:1.55;transition:all .14s ease;
+  word-break:keep-all;overflow-wrap:break-word;white-space:normal;text-wrap:balance;
+}
+.contents_div .gbq-linkbar a::after{
+  content:"→";flex:none;margin-left:auto;width:20px;height:20px;border-radius:50%;
+  background:var(--gbq-blue-soft);color:#12315f;
+  display:flex;align-items:center;justify-content:center;font-size:11px;
+}
+.contents_div .gbq-linkbar a:hover{border-color:var(--gbq-blue);background:#f4f8ff;}
+
+/* ══════════ MORE : 스폿 ══════════ */
+.contents_div .gbq-spots{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.contents_div .gbq-spot .gbq-imgslot{aspect-ratio:1.33;height:auto;background:var(--gbq-paper);}
+.contents_div .gbq-spot h4{margin:14px 0 1px;font-size:17.5px;text-align:center;}
+.contents_div .gbq-spot p{
+  margin:0;font-size:15px;color:var(--gbq-ink-soft);
+  display:flex;align-items:center;justify-content:center;gap:5px;text-align:center;
+}
+.contents_div .gbq-spot p::before{
+  content:"";flex:none;width:13px;height:13px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4431f'%3E%3Cpath d='M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* ══════════ MORE : 달력 ══════════ */
+.contents_div .gbq-cal-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;padding:0 7px;}
+.contents_div .gbq-cal-month{margin:0;font-family:var(--gbq-display);font-weight:700;font-size:37px;color:var(--gbq-red);line-height:1;}
+.contents_div .gbq-cal-legend{font-size:14.5px;color:var(--gbq-ink-soft);display:flex;align-items:center;gap:7px;}
+.contents_div .gbq-cal-legend .gbq-dot{width:11px;height:11px;border-radius:50%;background:var(--gbq-red);display:inline-block;}
+.contents_div .gbq-cal{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:4px;
+  background:#fff;border:2px solid var(--gbq-line-card);border-radius:20px;padding:16px;
+}
+.contents_div .gbq-cal div{
+  min-height:52px;display:flex;align-items:center;justify-content:center;
+  font-size:14.5px;line-height:1;color:var(--gbq-ink-soft);border-radius:11px;
+}
+.contents_div .gbq-cal .gbq-dow{min-height:0;padding:6px 0 8px;font-family:var(--gbq-display);font-weight:700;font-size:15px;color:var(--gbq-ink-faint);}
+.contents_div .gbq-cal .gbq-dow.gbq-sun,
+.contents_div .gbq-cal .gbq-day.gbq-sun{color:var(--gbq-red);}
+.contents_div .gbq-cal .gbq-day.gbq-sat{color:var(--gbq-blue);}
+.contents_div .gbq-cal .gbq-day.gbq-today{
+  position:relative;z-index:0;background:none;color:var(--gbq-ink);font-weight:700;
+  flex-direction:column;justify-content:center;gap:4px;
+}
+.contents_div .gbq-cal .gbq-day.gbq-today .gbq-tdnum{
+  display:flex;align-items:center;justify-content:center;
+  width:30px;height:30px;flex:none;border-radius:50%;background:#d5d8e0;
+  font-size:15.5px;font-weight:700;line-height:1;
+  transform:translateX(-2px);
+}
+.contents_div .gbq-cal .gbq-day.gbq-today .gbq-tdlabel{
+  font-family:var(--gbq-body);font-weight:700;font-size:11.5px;line-height:1;
+  letter-spacing:-.01em;color:#8b90a0;text-align:center;
+}
+.contents_div .gbq-cal .gbq-day.gbq-event{background:var(--gbq-red);color:#fff;font-family:var(--gbq-display);font-weight:700;font-size:16px;}
+.contents_div .gbq-cal .gbq-day.gbq-event.gbq-today .gbq-tdnum{background:rgba(255,255,255,.38);}
+.contents_div .gbq-cal .gbq-day.gbq-event.gbq-today .gbq-tdlabel{color:rgba(255,255,255,.92);}
+.contents_div .gbq-events{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px;}
+.contents_div .gbq-events li{
+  display:flex;gap:15px;align-items:center;border:2px solid var(--gbq-line-card);border-radius:18px;
+  padding:14px 18px;background:#fff;
+}
+.contents_div .gbq-ev-date{
+  flex:none;height:36px;padding:0 15px;border-radius:999px;background:var(--gbq-yellow-soft);
+  display:flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;line-height:1;
+}
+.contents_div .gbq-ev-date b{font-family:var(--gbq-display);font-weight:700;font-size:20px;color:var(--gbq-red);}
+.contents_div .gbq-ev-date span{font-size:12.5px;font-weight:700;color:var(--gbq-ink);}
+.contents_div .gbq-ev-body{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;}
+.contents_div .gbq-ev-body h5{margin:0;font-size:17px;font-family:var(--gbq-body);font-weight:700;}
+.contents_div .gbq-ev-body p{margin:0;font-size:15px;color:var(--gbq-ink-soft);}
+
+/* 이모저모 섹션 배경 + 블루 계열 라인/캡슐 */
+.contents_div #gbq-extra{background:#cbe5ff;}
+.contents_div #gbq-extra .gbq-shead{border-bottom-color:#8ab4e5;}
+.contents_div #gbq-extra .gbq-more-block+.gbq-more-block{border-top-color:#8ab4e5;}
+.contents_div #gbq-extra .gbq-spec{border-top-color:#8ab4e5;border-bottom-color:#8ab4e5;}
+.contents_div #gbq-extra .gbq-spec div+div{border-top-color:#b3d0f0;}
+.contents_div #gbq-extra .gbq-spec dt{color:var(--gbq-blue-deep);background:#eaf3ff;border-color:#eaf3ff;}
+.contents_div #gbq-extra .gbq-checks li{color:var(--gbq-ink);font-weight:600;}
+.contents_div #gbq-extra .gbq-cal-legend{color:var(--gbq-ink);}
+.contents_div #gbq-extra .gbq-checks li::before{color:var(--gbq-red);}
+.contents_div #gbq-extra .gbq-checks li+li{border-top-color:#a3c4e8;}
+.contents_div #gbq-extra .gbq-note{background:#eaf3ff;border-color:#8ab4e5;color:var(--gbq-blue-deep);}
+.contents_div #gbq-extra .gbq-note b{color:var(--gbq-blue-deep);}
+
+.contents_div .gbq-more-block+.gbq-more-block{margin-top:52px;padding-top:46px;border-top:2px dashed var(--gbq-line-2);}
+.contents_div .gbq-mb-head{display:flex;align-items:center;gap:11px;margin-bottom:22px;}
+.contents_div .gbq-mb-head h3{font-size:21px;}
+
+/* ══════════ CHECK BEFORE (퀴즈 안내 하단) ══════════ */
+.contents_div .gbq-before-box{background:#fff;border:2px solid #e3e3e8;border-radius:22px;padding:22px 24px;margin-top:34px;}
+.contents_div .gbq-bb-title{
+  margin:0 0 12px;font-family:var(--gbq-display);font-weight:700;font-size:17.5px;
+  letter-spacing:.02em;color:var(--gbq-red);
+}
+.contents_div .gbq-before-box .gbq-checks{gap:6px;}
+.contents_div .gbq-before-box .gbq-checks li{font-size:16px;line-height:1.6;gap:9px;color:var(--gbq-ink);padding:0;}
+.contents_div .gbq-before-box .gbq-checks li+li{border-top:0;}
+.contents_div .gbq-before-box .gbq-checks li::before{
+  display:block;width:auto;height:auto;padding:0;border:0;border-radius:0;background:none;
+  color:var(--gbq-red);font-weight:700;font-size:13px;line-height:1.6;margin-top:2px;
+}
+.contents_div .gbq-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.contents_div .gbq-duo-box{border-radius:20px;padding:22px 24px;}
+.contents_div .gbq-duo-box.gbq-a{background:var(--gbq-blue-soft);}
+.contents_div .gbq-duo-box.gbq-b{background:var(--gbq-yellow-soft);}
+.contents_div .gbq-duo-box h4{font-size:16.5px;margin-bottom:11px;display:flex;align-items:center;gap:8px;}
+.contents_div .gbq-duo-box h4 span{
+  font-family:var(--gbq-display);font-weight:700;font-size:11px;letter-spacing:.06em;background:#fff;
+  border-radius:999px;padding:2px 10px;color:var(--gbq-ink-soft);
+}
+.contents_div .gbq-duo-box ol{margin:0;padding-left:19px;font-size:15px;color:var(--gbq-ink-soft);line-height:1.75;}
+
+/* ══════════ INFO / FOOTER ══════════ */
+.contents_div .gbq-info{
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  padding:30px 46px;background:#cbe5ff;border-top:2px solid #8ab4e5;
+}
+.contents_div .gbq-info p.gbq-sub{
+  margin:25px 0 10px;font-family:var(--gbq-display);font-weight:700;font-size:30px;
+  color:var(--gbq-ink);line-height:1.4;text-align:center;word-break:keep-all;
+}
+.contents_div .gbq-info-share{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.contents_div .gbq-share-btn{
+  flex:none;width:48px;height:48px;padding:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--gbq-line-card);border-radius:50%;background:#fff;color:var(--gbq-red);
+  transition:all .14s ease;
+}
+.contents_div .gbq-share-btn:hover{background:var(--gbq-red);border-color:var(--gbq-red);color:#fff;}
+.contents_div .gbq-share-btn svg{width:22px;height:22px;display:block;}
+.contents_div .gbq-share-btn .gbq-ic-done{display:none;}
+.contents_div .gbq-share-btn.gbq-copied{background:var(--gbq-red);border-color:var(--gbq-red);color:#fff;}
+.contents_div .gbq-share-btn.gbq-copied .gbq-ic-share{display:none;}
+.contents_div .gbq-share-btn.gbq-copied .gbq-ic-done{display:block;}
+.contents_div footer{
+  padding:0 46px 36px;background:#cbe5ff;
+}
+.contents_div footer .gbq-ftags{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+}
+.contents_div footer .gbq-ftags li{
+  border:2px solid #8ab4e5;border-radius:999px;background:#fff;
+  padding:6px 14px;font-size:13px;letter-spacing:-.01em;color:var(--gbq-blue-deep);
+}
+.contents_div footer .gbq-credit{
+  margin:26px 0 0;text-align:center;font-size:12px;line-height:1.5;
+  letter-spacing:-.01em;color:#6c8cbb;
+}
+
+/* ══════════ 반응형 ══════════ */
+@media (max-width:600px){
+  .contents_div .gbq-sec{padding:70px 15px;}
+  .contents_div .gbq-shead{padding-bottom:11px;margin-bottom:28px;}
+  .contents_div .gbq-before-box{padding:16px 24px;}
+  .contents_div .gbq-hero-inner{padding:28px 15px 0;}
+  .contents_div .gbq-hero-art{margin-top:calc(-27% - 30px);}
+  .contents_div .gbq-eyebrow{font-size:10.5px;padding:1px 10px;border-width:1.5px;margin-bottom:18px;}
+  .contents_div .gbq-htitle{font-size:32px;}
+  .contents_div .gbq-hero-sub{font-size:16px;margin-top:12px;}
+  .contents_div .gbq-jump-nav{gap:9px;padding:14px 15px;}
+  .contents_div .gbq-jump-btn{height:60px;padding:0 12px;gap:8px;border-radius:15px;}
+  .contents_div .gbq-jump-btn .gbq-jb-ic{width:26px;height:26px;font-size:12.5px;}
+  .contents_div .gbq-jump-btn .gbq-jb-lb{font-size:10px;letter-spacing:.06em;}
+  .contents_div .gbq-jump-btn .gbq-jb-nm{font-size:14px;}
+  .contents_div .gbq-jump-btn .gbq-jb-ar{display:none;}   /* 모바일은 화살표 숨김 */
+  .contents_div .gbq-stitle{font-size:27px;}
+  .contents_div .gbq-shead{flex-direction:column;align-items:flex-start;gap:6px;}
+  .contents_div .gbq-scap{text-align:left;}
+  .contents_div .gbq-stitle::before{left:auto;right:-20px;top:-10px;}
+  .contents_div .gbq-round-bar{flex-direction:column;align-items:flex-start;gap:8px;}
+  .contents_div .gbq-round-bar .gbq-rb-tag{font-size:10px;padding:4px 5px;line-height:1.2;}
+  .contents_div .gbq-round-bar .gbq-rb-name{flex:none;width:100%;}
+  .contents_div .gbq-guide-band{grid-template-columns:repeat(3,1fr);gap:8px;}
+  .contents_div .gbq-guide-band .gbq-imgslot{height:86px;padding:6px;font-size:10px;gap:0;border-radius:12px;}
+  .contents_div .gbq-guide-band .gbq-imgslot small{display:none;}
+  .contents_div .gbq-steps{grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;}
+  .contents_div .gbq-steps li:not(:last-child)::after{right:-11px;top:3px;font-size:11px;}
+  .contents_div .gbq-steps .gbq-num{width:22px;height:22px;font-size:11px;margin-bottom:7px;}
+  .contents_div .gbq-steps b{font-size:11.5px;word-break:keep-all;}
+  .contents_div .gbq-steps p{font-size:11.5px;line-height:1.55;word-break:keep-all;}
+  .contents_div .gbq-w-only{display:none;}
+  .contents_div .gbq-m-only{display:inline;}
+  .contents_div .gbq-m-br{display:inline;}
+  .contents_div .gbq-lineup{grid-template-columns:1fr;}
+  .contents_div .gbq-lineup .gbq-qtext{min-height:0;}
+  .contents_div .gbq-qtext{word-break:normal;}
+  .contents_div .gbq-q{padding:14px 16px;}
+  .contents_div .gbq-lineup{gap:14px;}
+  .contents_div .gbq-ox{padding-top:7px;gap:8px;}
+  .contents_div .gbq-ox button{height:46px;font-size:20px;}
+  .contents_div .gbq-qtop{flex-wrap:wrap;align-items:flex-start;gap:9px;row-gap:8px;margin-bottom:10px;}
+  .contents_div .gbq-qhead{gap:10px;}
+  .contents_div .gbq-qtag{font-size:9.75px;padding:6px 8.75px;margin-top:0;letter-spacing:0;}   /* 크기 75%, 높이만 키워 원형에 가깝게 */
+  .contents_div .gbq-qtop .gbq-num{margin-top:1px;}
+  .contents_div .gbq-qtop .gbq-qtext{flex:1 1 0;min-width:0;}
+  .contents_div .gbq-lineup .gbq-solution{min-height:0;}
+  .contents_div .gbq-next-card{display:none;}
+  .contents_div .gbq-choices{grid-template-columns:1fr;}
+  .contents_div .gbq-photoq{grid-template-columns:1fr;}
+  .contents_div .gbq-photoq .gbq-imgslot{aspect-ratio:4/3;height:auto;min-height:0;}
+  .contents_div .gbq-detail{grid-template-columns:1fr;gap:18px;}
+  .contents_div .gbq-detail .gbq-imgslot{height:230px;}
+  .contents_div .gbq-detail .gbq-flagfig{max-width:none;height:270px;}
+  .contents_div .gbq-detail-body .gbq-checks li{white-space:normal;gap:8px;}
+  .contents_div .gbq-detail-body .gbq-checks li::before{width:19px;height:19px;border-radius:6px;font-size:11.5px;}
+  .contents_div .gbq-detail-body .gbq-linkbar a{font-size:15px;}
+  .contents_div .gbq-flagfig{height:270px;padding:16px 16px 12px;}
+  .contents_div .gbq-spots,
+.contents_div .gbq-duo{grid-template-columns:1fr;}
+  /* 375→21, 600→24. 뒤에서 JS가 실측해 한 줄에 맞는 크기로 다시 잡는다 */
+  .contents_div .gbq-mb-head h3{font-size:min(clamp(18px,calc(16px + 1.333vw),24px),calc((100vw - 67px) / 16.2));}
+  .contents_div .gbq-spot{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;column-gap:8px;}
+  .contents_div .gbq-spot .gbq-imgslot{aspect-ratio:1.4;height:auto;flex:0 0 100%;margin-bottom:11px;}   /* 이미지와 -3px */
+  .contents_div .gbq-spot h4{font-family:var(--gbq-body);font-size:15.5px;margin:0;}
+  .contents_div .gbq-spot p{margin:0 0 -4px;white-space:nowrap;}
+  .contents_div .gbq-spots+.gbq-linkbar{grid-template-columns:1fr;}
+  .contents_div .gbq-linkbar a{white-space:normal;text-wrap:balance;padding:12px;gap:8px;}
+  .contents_div .gbq-linkbar a::after{width:18px;height:18px;font-size:10px;}
+  /* 폭에 맞춰 크기를 계산해 항상 한 줄로 들어가게 한다 */
+  .contents_div .gbq-linkbar a .gbq-lb-m{
+    display:block;min-width:0;white-space:nowrap;letter-spacing:-.05em;
+    font-size:min(calc(var(--gbq-fs-b) + 2px),calc((100vw - 84px) / 18));
+  }
+  .contents_div .gbq-linkbar a .gbq-lb-m small{font-size:.72em;font-weight:500;letter-spacing:-.04em;color:#4a6a99;}
+  /* 행사 캡슐 80% + 제목 한 줄 */
+  .contents_div .gbq-events li{padding:12px;gap:10px;}
+  .contents_div .gbq-ev-date{height:28.8px;padding:0 12px;gap:4.8px;}
+  .contents_div .gbq-ev-date b{font-size:16px;}
+  .contents_div .gbq-ev-date span{font-size:10px;}
+  .contents_div .gbq-ev-body{gap:2px 10px;}
+  .contents_div .gbq-ev-body h5{font-size:14.5px;letter-spacing:-.02em;}
+  .contents_div .gbq-result-card{flex-direction:column;text-align:center;}
+  .contents_div .gbq-tiers{grid-template-columns:1fr;text-align:left;}
+  .contents_div .gbq-tier{flex-direction:row;flex-wrap:wrap;align-items:center;gap:14px;padding:14px 16px;}
+  .contents_div .gbq-tier-body{flex:1 1 0;min-width:0;align-items:flex-start;text-align:left;}
+  .contents_div .gbq-tier-body p{justify-content:flex-start;min-height:0;}
+  .contents_div .gbq-tier-res{width:100%;padding:10px 0 0;text-align:left;justify-content:flex-start;min-height:0;}
+  .contents_div .gbq-cal-month{font-size:30px;}
+  .contents_div .gbq-cal{padding:10px;gap:3px;}
+  .contents_div .gbq-cal div{min-height:41px;font-size:13.5px;border-radius:9px;}
+  .contents_div .gbq-cal .gbq-dow{padding:4px 0 6px;}
+  .contents_div .gbq-cal .gbq-day.gbq-today{gap:3px;}
+  .contents_div .gbq-cal .gbq-day.gbq-today .gbq-tdnum{width:26px;height:26px;font-size:14px;}
+  .contents_div .gbq-cal .gbq-day.gbq-today .gbq-tdlabel{font-size:11px;}
+  .contents_div .gbq-info{flex-direction:column;align-items:center;text-align:center;padding:26px 15px 21px;gap:14px;}
+  .contents_div .gbq-info p.gbq-sub{font-size:23px;margin:14px 0 6px;}
+  .contents_div .gbq-info-share{align-items:center;}
+  .contents_div footer{padding:0 15px 30px;}
+  .contents_div footer .gbq-ftags{gap:6px;}
+  .contents_div footer .gbq-ftags li{padding:4px 10px;font-size:12px;}
+  .contents_div footer .gbq-credit{font-weight:300;margin-top:18px;padding:5px 0;}
+  .contents_div .gbq-spec dt{width:80px;}
+
+  /* ── 본문 텍스트 : 375px에서 14px, 화면 폭 따라 13.5 ~ 15px ── */
+  .contents_div{
+    --gbq-fs-b:clamp(13.5px,calc(12.33px + 0.444vw),15px);   /* 375→14.0  600→15 */
+    --gbq-fs-l:clamp(14px,calc(12.83px + 0.444vw),15px);     /* 375→14.5  600→15 */
+  }
+  .contents_div .gbq-scap,
+.contents_div .gbq-scap.gbq-lv{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-note{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-lead{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-lead b{font-size:var(--gbq-fs-l);}
+  .contents_div .gbq-round-bar .gbq-rb-name{font-size:var(--gbq-fs-l);}
+  .contents_div .gbq-qtext{font-size:var(--gbq-fs-l);}
+  .contents_div .gbq-solution{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-choices button{font-size:var(--gbq-fs-l);}
+  .contents_div .gbq-result-score{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-result-msg{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-tier-body p,
+.contents_div .gbq-tier-res{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-checks li,
+.contents_div .gbq-before-box .gbq-checks li{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-before-box .gbq-checks li{line-height:1.54;}
+  .contents_div .gbq-detail-body .gbq-checks li{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-spec dd{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-linkbar a,
+.contents_div .gbq-detail-body .gbq-linkbar a{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-spot p{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-ev-body p{font-size:var(--gbq-fs-b);}
+  .contents_div .gbq-duo-box ol{font-size:var(--gbq-fs-b);}
+}
+@media (max-width:390px){
+  .contents_div .gbq-htitle{font-size:28px;}
+  .contents_div .gbq-hero-sub{font-size:14.5px;}
+  .contents_div .gbq-stitle{font-size:24px;}
+  .contents_div .gbq-jump-btn{height:56px;padding:0 11px;gap:7px;}
+  .contents_div .gbq-jump-btn .gbq-jb-ic{width:24px;height:24px;font-size:11.5px;}
+  .contents_div .gbq-jump-btn .gbq-jb-nm{font-size:13px;}
+  .contents_div .gbq-q{padding:14px 14px;}
+  .contents_div .gbq-photoq .gbq-choices button{padding:10px 12px;gap:7px;}
+  .contents_div .gbq-btn{font-size:16.5px;padding:14px 30px;}
+  .contents_div .gbq-cal{padding:8px;}
+  .contents_div .gbq-cal div{min-height:38px;font-size:12.5px;}
+  .contents_div .gbq-cal .gbq-day.gbq-today .gbq-tdnum{width:23px;height:23px;font-size:13px;}
+  .contents_div .gbq-spec dt{width:72px;}
+  .contents_div .gbq-info p.gbq-sub{font-size:21px;}
+}
+@media (prefers-reduced-motion:reduce){.contents_div *{transition:none !important;animation:none !important;}}
+.contents_div :focus-visible{outline:2.5px solid var(--gbq-blue);outline-offset:3px;}
+</style>
+
+<div class="contents_div">
+  <div class="gbq-page">
+<!-- ═══════════════ HERO ═══════════════ -->
+  <header class="gbq-hero">
+    <div class="gbq-hero-inner">
+      <p class="gbq-eyebrow">2026 · 제81주년</p>
+      <h1 class="gbq-htitle">
+        <span class="gbq-l1">광복절,</span>
+        <span class="gbq-l2">이 정도는 알고 가자!</span>
+      </h1>
+      <p class="gbq-hero-sub">전남광주통합특별시 광복 QUIZ</p>
+    </div>
+
+    <!-- 무궁화는 처음부터 깔려 있고, 그 사이로 남자→여자→새가 통통통 등장 -->
+    <div class="gbq-hero-art" aria-hidden="true">
+      <div class="gbq-lyr gbq-lyr-boy"><img src="img/히어로남자.webp" alt="" width="1600" height="1470" decoding="async"></div>
+      <div class="gbq-lyr gbq-lyr-girl"><img src="img/히어로여자.webp" alt="" width="1600" height="1470" decoding="async"></div>
+      <div class="gbq-lyr gbq-lyr-bird"><img src="img/히어로새.webp" alt="" width="1600" height="1470" decoding="async"></div>
+      <div class="gbq-lyr gbq-lyr-bloom"><img src="img/히어로%20무궁화.webp" alt="" width="1600" height="1470" decoding="async"></div>
+    </div>
+  </header>
+
+  <!-- ═══════════════ 바로가기 ═══════════════ -->
+  <nav class="gbq-jump-nav" aria-label="바로가기">
+    <a class="gbq-jump-btn gbq-a" href="#gbq-quiz">
+      <span class="gbq-jb-ic" aria-hidden="true">Q</span>
+      <span class="gbq-jb-tx"><span class="gbq-jb-lb">SECTION 01</span><span class="gbq-jb-nm">퀴즈 풀기</span></span>
+      <span class="gbq-jb-ar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5v14"/><path d="M5.6 12.4 12 18.8l6.4-6.4"/></svg></span>
+    </a>
+    <a class="gbq-jump-btn gbq-b" href="#gbq-extra">
+      <span class="gbq-jb-ic" aria-hidden="true">＋</span>
+      <span class="gbq-jb-tx"><span class="gbq-jb-lb">SECTION 02</span><span class="gbq-jb-nm">광복절 이모저모</span></span>
+      <span class="gbq-jb-ar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5v14"/><path d="M5.6 12.4 12 18.8l6.4-6.4"/></svg></span>
+    </a>
+  </nav>
+
+  <!-- ═══════════════ 퀴즈 안내 ═══════════════ -->
+  <section class="gbq-sec gbq-guide">
+    <div class="gbq-shead">
+      <h2 class="gbq-stitle">퀴즈 <em>안내</em></h2>
+      <p class="gbq-scap">나의 광복 점수는?</p>
+    </div>
+
+    <div class="gbq-guide-band">
+      <div class="gbq-imgslot"><span>이미지 자리 ①</span><small>권장 240 × 190 px</small></div>
+      <div class="gbq-imgslot"><span>이미지 자리 ②</span><small>권장 240 × 190 px</small></div>
+      <div class="gbq-imgslot"><span>이미지 자리 ③</span><small>권장 240 × 190 px</small></div>
+    </div>
+
+    <ol class="gbq-steps">
+      <li><span class="gbq-num">01</span><b>15문제를 풀어요</b><p>라운드별로<span class="gbq-w-only"> O/X와 4지선다,<br>사진 </span><br class="gbq-m-br">문제가 이어집니다</p></li>
+      <li><span class="gbq-num">02</span><b>채점하기를 눌러요</b><p>모든 문제를 풀면<br>채점 버튼이 켜집니다</p></li>
+      <li><span class="gbq-num">03</span><b>내 광복 점수 확인</b><p>문제별 해설과 등급을<br>한 번에 볼 수 있어요</p></li>
+    </ol>
+
+    <div class="gbq-before-box">
+      <p class="gbq-bb-title">참여 전 체크</p>
+      <ul class="gbq-checks">
+        <li>퀴즈 결과는 저장되지 않아요. 화면을 새로 고치면 처음부터 다시 풀어야 합니다.</li>
+        <li>모든 문제를 풀어야 채점 버튼이 활성화됩니다.</li>
+        <li>정답 해설은 채점 후 각 문제 아래에서 확인할 수 있어요.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ROUND 01 ═══════════════ -->
+  <section class="gbq-sec" id="gbq-quiz">
+    <div class="gbq-shead">
+      <h2 class="gbq-stitle">가볍게 <em>O/X 퀴즈</em></h2>
+      <p class="gbq-scap gbq-lv">난이도 <i>★★</i></p>
+    </div>
+
+    <div class="gbq-round-bar">
+      <span class="gbq-rb-tag">ROUND 01</span>
+      <span class="gbq-rb-name">맞으면 O, 틀리면 X를 골라 주세요</span>
+    </div>
+
+    <div class="gbq-lineup">
+      <div class="gbq-q" data-answer="X">
+        <div class="gbq-qtop"><span class="gbq-num">01</span><p class="gbq-qtext">광주학생독립운동은 광주역에서 시작했다.</p><span class="gbq-stamp">정답</span></div>
+        <div class="gbq-ox"><button type="button" data-v="O">O</button><button type="button" data-v="X">X</button></div>
+        <div class="gbq-solution"><b>정답 X</b>나주역에서 시작</div>
+      </div>
+
+      <div class="gbq-q" data-answer="O">
+        <div class="gbq-qtop"><span class="gbq-num">02</span><p class="gbq-qtext">학생독립운동기념일은 11월 3일이다.</p><span class="gbq-stamp">정답</span></div>
+        <div class="gbq-ox"><button type="button" data-v="O">O</button><button type="button" data-v="X">X</button></div>
+        <div class="gbq-solution"><b>정답 O</b>1929년 11월 3일 일왕 생일 기념식에 항일 시위</div>
+      </div>
+
+      <div class="gbq-q" data-answer="O">
+        <div class="gbq-qtop"><span class="gbq-num">03</span><p class="gbq-qtext">함평은 3·1운동 발상지로 손꼽힌다.</p><span class="gbq-stamp">정답</span></div>
+        <div class="gbq-ox"><button type="button" data-v="O">O</button><button type="button" data-v="X">X</button></div>
+        <div class="gbq-solution"><b>정답 O</b>함평 낙영재는 손꼽히는 3·1운동 발상지</div>
+      </div>
+
+      <div class="gbq-q" data-answer="X">
+        <div class="gbq-qtop"><span class="gbq-num">04</span><p class="gbq-qtext">전남광주통합특별시의 3·1운동 사적지는 30곳이다.</p><span class="gbq-stamp">정답</span></div>
+        <div class="gbq-ox"><button type="button" data-v="O">O</button><button type="button" data-v="X">X</button></div>
+        <div class="gbq-solution"><b>정답 X</b>전역에 걸쳐 총 38곳의 3·1운동 사적지 확인</div>
+      </div>
+
+      <div class="gbq-q" data-answer="X">
+        <div class="gbq-qtop"><span class="gbq-num">05</span><p class="gbq-qtext">민족대표 33인 중 한 명인 양한묵의 묘는 원래부터 전남에 있었다.</p><span class="gbq-stamp">정답</span></div>
+        <div class="gbq-ox"><button type="button" data-v="O">O</button><button type="button" data-v="X">X</button></div>
+        <div class="gbq-solution"><b>정답 X</b>1922년 고향을 그리던 그의 마음을 헤아려 화순으로 옮김</div>
+      </div>
+
+      <div class="gbq-next-card">
+        <i>✦</i>
+        <b>ROUND 01 끝!</b>
+        <span>이제 보기 중에서<br>정답을 골라 볼 차례예요</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ROUND 02 ═══════════════ -->
+  <section class="gbq-sec gbq-guide">
+    <div class="gbq-shead">
+      <h2 class="gbq-stitle">보기 중 <span class="gbq-b">정답 고르기</span></h2>
+      <p class="gbq-scap gbq-lv">난이도 <i>★★★</i></p>
+    </div>
+
+    <div class="gbq-round-bar">
+      <span class="gbq-rb-tag">ROUND 02</span>
+      <span class="gbq-rb-name">네 개의 보기 중 하나를 선택해 주세요</span>
+    </div>
+
+    <div class="gbq-mcq-list">
+      <div class="gbq-q" data-answer="3">
+        <div class="gbq-qhead">
+          <span class="gbq-qtag">Q.06</span>
+          <p class="gbq-qtext">광주학생독립운동기념관 기념탑으로 가는 계단의 수는?</p>
+          <span class="gbq-stamp">정답</span>
+        </div>
+        <div class="gbq-choices">
+          <button type="button" data-v="1"><span class="gbq-mark">1</span>31개</button>
+          <button type="button" data-v="2"><span class="gbq-mark">2</span>815개</button>
+          <button type="button" data-v="3"><span class="gbq-mark">3</span>113개</button>
+          <button type="button" data-v="4"><span class="gbq-mark">4</span>130개</button>
+        </div>
+        <div class="gbq-solution"><b>정답 ③</b>11월 3일 학생독립운동기념일을 의미</div>
+      </div>
+
+      <div class="gbq-q" data-answer="2">
+        <div class="gbq-qhead">
+          <span class="gbq-qtag">Q.07</span>
+          <p class="gbq-qtext">남한폭도대토벌작전 당시, 체포된 의병들의 강제 노역으로 만들어진 길은?</p>
+          <span class="gbq-stamp">정답</span>
+        </div>
+        <div class="gbq-choices">
+          <button type="button" data-v="1"><span class="gbq-mark">1</span>국도 제1호선</button>
+          <button type="button" data-v="2"><span class="gbq-mark">2</span>국도 제2호선</button>
+          <button type="button" data-v="3"><span class="gbq-mark">3</span>호남고속도로</button>
+          <button type="button" data-v="4"><span class="gbq-mark">4</span>경춘가도</button>
+        </div>
+        <div class="gbq-solution"><b>정답 ②</b>체포된 의병 2천여 명이 만든 해남~하동 간 도로 공사</div>
+      </div>
+
+      <div class="gbq-q" data-answer="2">
+        <div class="gbq-qhead">
+          <span class="gbq-qtag">Q.08</span>
+          <p class="gbq-qtext">1919년 목포에서 일어난 독자적인 만세운동의 이름은?</p>
+          <span class="gbq-stamp">정답</span>
+        </div>
+        <div class="gbq-choices">
+          <button type="button" data-v="1"><span class="gbq-mark">1</span>목포 3·1운동</button>
+          <button type="button" data-v="2"><span class="gbq-mark">2</span>목포 4·8만세운동</button>
+          <button type="button" data-v="3"><span class="gbq-mark">3</span>목포 항쟁</button>
+          <button type="button" data-v="4"><span class="gbq-mark">4</span>목포 학생운동</button>
+        </div>
+        <div class="gbq-solution"><b>정답 ②</b>개항 도시 목포에서 시작된 독자적인 만세운동</div>
+      </div>
+
+      <div class="gbq-q" data-answer="3">
+        <div class="gbq-qhead">
+          <span class="gbq-qtag">Q.09</span>
+          <p class="gbq-qtext">나주학생독립운동기념관과 광주학생독립운동기념관이 휴관하지 않는 특별한 날은?</p>
+          <span class="gbq-stamp">정답</span>
+        </div>
+        <div class="gbq-choices">
+          <button type="button" data-v="1"><span class="gbq-mark">1</span>매주 월요일</button>
+          <button type="button" data-v="2"><span class="gbq-mark">2</span>어린이날</button>
+          <button type="button" data-v="3"><span class="gbq-mark">3</span>광복절</button>
+          <button type="button" data-v="4"><span class="gbq-mark">4</span>성탄절</button>
+        </div>
+        <div class="gbq-solution"><b>정답 ③</b>3·1절, 현충일, 광복절 예외 개관</div>
+      </div>
+
+      <div class="gbq-q" data-answer="2">
+        <div class="gbq-qhead">
+          <span class="gbq-qtag">Q.10</span>
+          <p class="gbq-qtext">광주학생독립운동이 일어난 계기는 무엇이었을까요?</p>
+          <span class="gbq-stamp">정답</span>
+        </div>
+        <div class="gbq-choices">
+          <button type="button" data-v="1"><span class="gbq-mark">1</span>세금 인상에 대한 반발</button>
+          <button type="button" data-v="2"><span class="gbq-mark">2</span>학생 간 충돌 사건</button>
+          <button type="button" data-v="3"><span class="gbq-mark">3</span>식량 부족</button>
+          <button type="button" data-v="4"><span class="gbq-mark">4</span>철도 건설 반대</button>
+        </div>
+        <div class="gbq-solution"><b>정답 ②</b>1929년 나주역에서 일본인 학생이 한국인 학생을 희롱한 사건이 발단</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ROUND 03 ═══════════════ -->
+  <section class="gbq-sec">
+    <div class="gbq-shead">
+      <h2 class="gbq-stitle">사진 속 <em>장소 찾기</em></h2>
+      <p class="gbq-scap gbq-lv">난이도 <i>★★★★★</i></p>
+    </div>
+
+    <div class="gbq-round-bar">
+      <span class="gbq-rb-tag">ROUND 03</span>
+      <span class="gbq-rb-name">사진 속 장소는 어디일까요?</span>
+    </div>
+
+    <div class="gbq-mcq-list">
+      <div class="gbq-q gbq-photoq" data-answer="4">
+        <div class="gbq-imgslot gbq-has-img"><img src="img/11.webp" alt="안경을 쓰고 한복을 입은 인물의 동상" width="560" height="493" loading="lazy" decoding="async"></div>
+        <div>
+          <div class="gbq-qhead">
+            <span class="gbq-qtag">Q.11</span>
+            <p class="gbq-qtext">사진 속 장소는 어디일까요?</p>
+            <span class="gbq-stamp">정답</span>
+          </div>
+          <div class="gbq-choices">
+            <button type="button" data-v="1"><span class="gbq-mark">1</span>금릉학교 터</button>
+            <button type="button" data-v="2"><span class="gbq-mark">2</span>백당기념관</button>
+            <button type="button" data-v="3"><span class="gbq-mark">3</span>나주학생독립운동기념관</button>
+            <button type="button" data-v="4"><span class="gbq-mark">4</span>광주백범기념관</button>
+          </div>
+          <div class="gbq-solution"><b>정답 ④</b>동구 천변우로 599 광주백범기념관</div>
+        </div>
+      </div>
+
+      <div class="gbq-q gbq-photoq" data-answer="1">
+        <div class="gbq-imgslot gbq-has-img"><img src="img/12.webp" alt="여러 갈래로 솟은 곡선 기둥 형태의 기념탑" width="560" height="350" loading="lazy" decoding="async"></div>
+        <div>
+          <div class="gbq-qhead">
+            <span class="gbq-qtag">Q.12</span>
+            <p class="gbq-qtext">사진 속 장소는 어디일까요?</p>
+            <span class="gbq-stamp">정답</span>
+          </div>
+          <div class="gbq-choices">
+            <button type="button" data-v="1"><span class="gbq-mark">1</span>광주학생독립운동기념관 기념탑</button>
+            <button type="button" data-v="2"><span class="gbq-mark">2</span>양림교회</button>
+            <button type="button" data-v="3"><span class="gbq-mark">3</span>산동교</button>
+            <button type="button" data-v="4"><span class="gbq-mark">4</span>기미 3.1의거 열사 기념비</button>
+          </div>
+          <div class="gbq-solution"><b>정답 ①</b>광주학생독립운동기념관 기념탑</div>
+        </div>
+      </div>
+
+      <div class="gbq-q gbq-photoq" data-answer="4">
+        <div class="gbq-imgslot gbq-has-img"><img src="img/13.webp" alt="붉은 철제 구조물 위에 매달린 종" width="560" height="451" loading="lazy" decoding="async"></div>
+        <div>
+          <div class="gbq-qhead">
+            <span class="gbq-qtag">Q.13</span>
+            <p class="gbq-qtext">사진 속 장소는 어디일까요?</p>
+            <span class="gbq-stamp">정답</span>
+          </div>
+          <div class="gbq-choices">
+            <button type="button" data-v="1"><span class="gbq-mark">1</span>김치홍 장군 사당</button>
+            <button type="button" data-v="2"><span class="gbq-mark">2</span>김구 선생 은거 추모비</button>
+            <button type="button" data-v="3"><span class="gbq-mark">3</span>나라와 겨레 위한 얼의 탑</button>
+            <button type="button" data-v="4"><span class="gbq-mark">4</span>강진읍교회 종탑</button>
+          </div>
+          <div class="gbq-solution"><b>정답 ④</b>시계가 없던 강진독립만세운동 당시 교회 종소리에 맞춰 만세운동 진행</div>
+        </div>
+      </div>
+
+      <div class="gbq-q gbq-photoq" data-answer="1">
+        <div class="gbq-imgslot gbq-has-img"><img src="img/14.webp" alt="삼각 박공 현관을 갖춘 2층 붉은 벽돌 근대 건축물" width="560" height="381" loading="lazy" decoding="async"></div>
+        <div>
+          <div class="gbq-qhead">
+            <span class="gbq-qtag">Q.14</span>
+            <p class="gbq-qtext">사진 속 장소는 어디일까요?</p>
+            <span class="gbq-stamp">정답</span>
+          </div>
+          <div class="gbq-choices">
+            <button type="button" data-v="1"><span class="gbq-mark">1</span>목포근대역사관</button>
+            <button type="button" data-v="2"><span class="gbq-mark">2</span>목포시 현충탑</button>
+            <button type="button" data-v="3"><span class="gbq-mark">3</span>목포양동교회 3·1운동 만세시위지</button>
+            <button type="button" data-v="4"><span class="gbq-mark">4</span>윤동주 시(詩) 정원</button>
+          </div>
+          <div class="gbq-solution"><b>정답 ①</b>일제가 토지 관리를 빙자해 수탈을 자행한 가슴 아픈 역사가 있는 곳</div>
+        </div>
+      </div>
+
+      <div class="gbq-q gbq-photoq" data-answer="2">
+        <div class="gbq-imgslot gbq-has-img"><img src="img/15.webp" alt="흰 난간 발코니가 있는 회색 벽돌 2층 근대 건축물" width="560" height="322" loading="lazy" decoding="async"></div>
+        <div>
+          <div class="gbq-qhead">
+            <span class="gbq-qtag">Q.15</span>
+            <p class="gbq-qtext">사진 속 장소는 어디일까요?</p>
+            <span class="gbq-stamp">정답</span>
+          </div>
+          <div class="gbq-choices">
+            <button type="button" data-v="1"><span class="gbq-mark">1</span>광양시 독립유공자 추모탑</button>
+            <button type="button" data-v="2"><span class="gbq-mark">2</span>수피아여학교 3·1운동 만세시위 준비지</button>
+            <button type="button" data-v="3"><span class="gbq-mark">3</span>일강 김철 선생 숭모비</button>
+            <button type="button" data-v="4"><span class="gbq-mark">4</span>장홍염 흉상</button>
+          </div>
+          <div class="gbq-solution"><b>정답 ②</b>광주 3·1운동을 주도했던 수피아여학교 교사와 학생들이 만세 시위를 준비했던 장소</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 채점 ═══════════════ -->
+  <section class="gbq-sec gbq-score">
+    <div class="gbq-shead">
+      <h2 class="gbq-stitle"><em>채점</em> 결과 보기</h2>
+      <p class="gbq-scap">내 광복 점수는 몇 점일까?</p>
+    </div>
+
+    <div class="gbq-score-box">
+      <p class="gbq-progress">푼 문제 <b><span id="gbq-done">0</span></b> / 15</p>
+      <button class="gbq-btn" id="gbq-grade" type="button" disabled>채점하기</button>
+
+      <div class="gbq-result" id="gbq-result">
+        <div class="gbq-result-card">
+          <div class="gbq-pole">
+            <svg viewBox="0 0 110 160" aria-hidden="true">
+              <line x1="18" y1="10" x2="18" y2="150" stroke="#02051b" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="18" cy="8" r="6" fill="#ffd75e" stroke="#02051b" stroke-width="2.5"/>
+              <rect x="4" y="150" width="28" height="6" rx="3" fill="#02051b"/>
+              <g class="gbq-flag-group" id="gbq-flagGroup" transform="translate(0,112)">
+                <g transform="translate(18.0000,-0.0020) scale(0.704535)">
+                <path fill="#090d25" d="M92.3,49.52v-23.42c0-.1.03-.19.08-.25.13-.17.23-.35.22-.56l-.62-13.52c0-.13-.05-.26-.1-.38-.42-.94-.42-2.72-.07-3.63.06-.14.1-.29.09-.44-.05-1.58-.29-3.11-.25-4.75.02-.9-.26-1.59-.81-2.08-.9-.8-4.59-.49-6.69.04-4.12,1.06-8.29,1.04-12.53,1.49-5.28.55-10.55,1.15-15.88,1.22-.18,0-.34.07-.49.17-.61.38-1.52.32-1.82-.14h-.82c-.3.46-1.12.51-1.54.15-.15-.13-.35-.17-.55-.17-8.44-.11-16.77-.65-25.35-1.28L8.09.69s.01-.02.02-.03C5.25.61.44-1.05,0,2.89c0,5.66.41,9.22.43,14.03l.22,53.65c0,1.49,2.52,2.55,3.78,2.49,5.99-.27,11.4.33,17.36.51,11.02.32,21.79.35,32.75-.09l13.19-.99,6.72-.77,9.34-1.42,6.72-1.13c1.04-.18,1.43-1.3,1.48-2.24l.54-9.63.09-6.86c0-.24-.1-.46-.24-.66-.05-.07-.09-.16-.09-.27ZM90.27,55.98c0,.33-.23.44-.41.2l-.24,9.55c-.01.47-.35.87-.81.96-13.93,2.71-26.91,3.61-40.83,4.23-.04.23-.19.42-.46.42h-8.78c-.24,0-.38-.22-.22-.36h-6.58c-.13,0-.26.04-.38.09-1.07.44-2.45.43-3.22-.09h-.69c-.85.53-2.69.56-3.21.17-.17-.13-.35-.24-.56-.25-6.52-.24-12.91-.94-19.52-1.21-.53-.02-.95-.45-.95-.98l-.09-36.82.06-14.51c-.11-.09-.31-.1-.4-.18-.12-.11-.21-.35-.21-.62v-8.21c0-.19.04-.35.1-.44.14-.21.26-.42.26-.67v-3.02c0-.56.46-1,1.03-1,1.8.03,3.48.31,5.3.45l20.07,1.46c4.91.36,9.58.86,14.49.85.11-.12.25-.33.49-.33h13.18c.24,0,.38.21.22.31,3.23,0,6.35-.41,9.57-.73l12.14-1.19c2.75-.27,5.6-1.09,8.49-1.13.53,0,.96.43.98.96l.67,18.04c.01.3.1.62.35.79.09.06.16.18.16.35v32.93Z"/>
+                  <path fill="#0b0a0a" d="M92.64,50.02c-.12-.1-.33-.24-.33-.5v-23.42c0-.26.21-.39.32-.38v24.29Z"/>
+                  <path fill="#0b0a0a" d="M91.98,11.58c-.55-.94-.54-3.15-.07-4.02l.07,4.02Z"/>
+                  <path fill="#0b0a0a" d="M55.48,3.25c-.59.56-1.7.55-2.03.02l2.03-.02Z"/>
+                  <path fill="#0b0a0a" d="M52.63,3.27c-.34.52-1.35.52-1.69-.02l1.69.02Z"/>
+                  <path fill="#fafafa" d="M89.82,22.71l.07,33.53-.26,10.36c-14.23,2.83-27.44,3.76-41.62,4.38l-9.46.06h-6.78s-3.4,0-3.4,0h-.69s-3.36-.07-3.36-.07c-6.97-.24-13.8-1.02-20.88-1.26l-.09-37.77.06-14.51-.24-1.84v-7.71s0-3.76,0-3.76c0-.46.37-.85.83-.85,1.88,0,3.61.31,5.5.45l20.07,1.46c4.91.36,9.58.86,14.49.85l13.9-.02c1.47,0,2.94-.08,4.4-.22l17.31-1.7c3.04-.3,6.22-1.27,9.43-1.11l.73,19.72ZM74.73,18.45l2.4-1.48-3.88-5.84-2.46,1.57,3.94,5.76ZM20.52,11.23l-9.22,13.26,2.62,1.84,9.22-13.26-2.62-1.84ZM69.74,13.26l-2.63,1.69,8.49,13.32,2.63-1.69-8.49-13.32ZM24.25,13.76l-9.63,13.16,2.62,1.94,9.63-13.16-2.62-1.94ZM67.46,23.3l2.28-1.54-3.67-5.72c-.98.16-1.9.64-2.45,1.57l3.83,5.69ZM27.67,16.29l-9.36,13.39,2.61,1.84,9.36-13.39-2.61-1.84ZM81.72,23.96l-3.8-5.7-2.43,1.67c1.59,2.02,2.61,3.85,3.92,5.86.8-.62,1.57-.97,2.3-1.82ZM30.83,31.51c-1.69,4.19-1.98,8.49-.08,12.92,2.29,5.35,7.12,8.91,12.99,9.75,6.7.96,13.3-2.37,16.96-8.04.84-1.3,1.2-2.29,1.23-3.7.09.1.27.1.37.02.12-.1.21-.36.29-.62,2.28-7.53-1.04-15.78-8.02-19.25-9.24-4.6-20-.37-23.74,8.92ZM74.44,28.94l-3.89-5.94c-.73.64-1.35,1.1-2.36,1.5l3.88,6.08,2.37-1.64ZM69.8,51.72l3.96-5.79c-.64-.81-1.39-1.41-2.37-1.5l-4.1,6.21,2.51,1.09ZM27.99,59.86c1.06-.43,1.64-.84,2.44-1.47l-9.02-12.53c-1.01.22-1.79.8-2.35,1.69l8.92,12.31ZM73.2,54.14l4.12-5.91-2.19-1.69-4.03,5.87c.47.79,1.16,1.22,2.1,1.73ZM19.47,55.44c.81-.54,1.61-.84,2.3-1.67l-4.11-5.49-2.21,1.71,4.02,5.46ZM76.84,56.38l4.05-6.06c-.8-.62-1.46-1.09-2.43-1.35l-3.83,5.82c.44.76,1.18,1.38,2.21,1.6ZM23.08,63.04l-8.92-12.22c-1.17.43-1.89,1.03-2.4,1.63l8.93,12.31c1.07-.22,1.99-.59,2.39-1.73ZM64.68,59.15l4.12-6.09-2.28-1.58-4.16,6c.88.51,1.38.88,2.33,1.67ZM68.47,61.18l3.88-5.79c-.65-.66-1.46-1.14-2.34-1.37l-4.02,5.71c.96.77,1.55,1.31,2.47,1.46ZM24.5,62.57l2.2-1.77-4-5.7-2.18,1.7,3.99,5.76ZM72,63.26l3.75-5.42c-.63-.86-1.36-1.42-2.3-1.5l-3.79,5.76c.5.59,1.64,1.43,2.34,1.16Z"/>
+                  <path fill="#0b0a0a" d="M89.86,56.17l-.07-33.53c.21-.05.48.06.48.4v32.93c0,.33-.23.44-.41.2Z"/>
+                  <path fill="#0b0a0a" d="M57.92,5.96l-13.9.02c.11-.12.25-.33.49-.33h13.18c.24,0,.38.21.22.31Z"/>
+                  <path fill="#0b0a0a" d="M3.38,17.37c-.11-.09-.31-.1-.4-.18-.12-.11-.21-.35-.21-.62v-8.21c0-.37.13-.62.36-.52v7.71s.25,1.84.25,1.84Z"/>
+                  <path fill="#0b0a0a" d="M47.98,70.91c-.04.23-.19.42-.46.42h-8.78c-.24,0-.38-.22-.22-.36l9.46-.06Z"/>
+                  <path fill="#0b0a0a" d="M27.66,70.97c-1,.63-3.32.57-3.36-.05l3.36.05Z"/>
+                  <path fill="#0b0a0a" d="M31.75,70.99c-1.09.53-2.59.53-3.4,0h3.4Z"/>
+                  <g>
+                    <path fill="#0c3aaa" d="M62.22,42.19c-.03,1.42-.7,2.59-1.54,3.89-3.66,5.67-10.26,8.99-16.96,8.04-5.87-.84-10.7-4.4-12.99-9.75-1.9-4.43-1.6-8.74.08-12.92-.47,3.88,1.49,7.87,5.02,9.37s8.05.76,10.15-2.66c1.75-2.83,4.19-4.72,7.55-4.78,3.12-.06,6.04,1.7,7.62,4.55.8,1.45,1.1,2.79,1.07,4.26Z"/>
+                    <path fill="#f93238" d="M62.2,42.58c.03-1.47-.24-3.2-1.04-4.65-1.58-2.85-4.5-4.61-7.62-4.55-3.36.06-5.8,1.95-7.55,4.78-2.11,3.41-6.63,4.16-10.15,2.66s-5.49-5.48-5.02-9.37c3.74-9.29,14.5-13.52,23.74-8.92,6.98,3.47,10.31,11.72,8.02,19.25-.08.27-.17.53-.29.62-.1.08,0,.28-.08.18Z"/>
+                  </g>
+                  <g>
+                    <polygon fill="#0b0a0a" points="24.22 13.69 26.85 15.63 17.21 28.79 14.59 26.86 24.22 13.69"/>
+                    <polygon fill="#0b0a0a" points="27.65 16.22 30.26 18.06 20.9 31.45 18.29 29.61 27.65 16.22"/>
+                    <polygon fill="#0b0a0a" points="20.5 11.16 23.12 12.99 13.9 26.26 11.28 24.42 20.5 11.16"/>
+                  </g>
+                  <g>
+                    <polygon fill="#0b0a0a" points="69.72 13.19 78.2 26.51 75.57 28.2 67.08 14.88 69.72 13.19"/>
+                    <path fill="#0b0a0a" d="M74.42,28.87l-2.37,1.64-3.88-6.08c1.01-.4,1.63-.86,2.36-1.5l3.89,5.94Z"/>
+                    <path fill="#0b0a0a" d="M81.7,23.89c-.73.86-1.5,1.21-2.3,1.82-1.31-2.01-2.33-3.84-3.92-5.86l2.43-1.67,3.8,5.7Z"/>
+                    <polygon fill="#0b0a0a" points="74.7 18.39 70.76 12.63 73.22 11.06 77.1 16.9 74.7 18.39"/>
+                    <path fill="#0b0a0a" d="M67.43,23.23l-3.83-5.69c.55-.93,1.47-1.41,2.45-1.57l3.67,5.72-2.28,1.54Z"/>
+                  </g>
+                  <g>
+                    <path fill="#0b0a0a" d="M64.65,59.08c-.95-.79-1.45-1.16-2.33-1.67l4.16-6,2.28,1.58-4.12,6.09Z"/>
+                    <path fill="#0b0a0a" d="M69.78,51.66l-2.51-1.09,4.1-6.21c.99.09,1.73.68,2.37,1.5l-3.96,5.79Z"/>
+                    <path fill="#0b0a0a" d="M76.81,56.31c-1.03-.22-1.77-.84-2.21-1.6l3.83-5.82c.97.26,1.63.73,2.43,1.35l-4.05,6.06Z"/>
+                    <path fill="#0b0a0a" d="M73.17,54.07c-.94-.51-1.63-.94-2.1-1.73l4.03-5.87,2.19,1.69-4.12,5.91Z"/>
+                    <path fill="#0b0a0a" d="M68.44,61.12c-.92-.15-1.51-.69-2.47-1.46l4.02-5.71c.88.23,1.69.71,2.34,1.37l-3.88,5.79Z"/>
+                    <path fill="#0b0a0a" d="M71.97,63.19c-.7.27-1.85-.58-2.34-1.16l3.79-5.76c.94.09,1.67.64,2.3,1.5l-3.75,5.42Z"/>
+                  </g>
+                  <g>
+                    <path fill="#0b0a0a" d="M23.05,62.97c-.4,1.14-1.32,1.51-2.39,1.73l-8.93-12.31c.51-.6,1.23-1.21,2.4-1.63l8.92,12.22Z"/>
+                    <path fill="#0b0a0a" d="M27.96,59.8l-8.92-12.31c.56-.89,1.34-1.47,2.35-1.69l9.02,12.53c-.8.63-1.39,1.04-2.44,1.47Z"/>
+                    <polygon fill="#0b0a0a" points="24.47 62.5 20.48 56.74 22.67 55.04 26.67 60.73 24.47 62.5"/>
+                    <path fill="#0b0a0a" d="M19.45,55.37l-4.02-5.46,2.21-1.71,4.11,5.49c-.69.84-1.48,1.13-2.3,1.67Z"/>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="gbq-result-copy">
+            <p class="gbq-result-score">15문제 중 <b id="gbq-score">0</b>개 정답</p>
+            <p class="gbq-result-grade" id="gbq-grade-title">—</p>
+            <p class="gbq-result-msg" id="gbq-grade-msg">—</p>
+          </div>
+        </div>
+
+        <div class="gbq-tiers" id="gbq-gradeList">
+          <div class="gbq-tier" data-min="0">
+            <span class="gbq-num">0</span>
+            <div class="gbq-tier-body"><span class="gbq-tag">레벨 0</span><p><span>정답 4개 이하<br>해설부터 천천히 읽어 봐요</span></p></div>
+            <b class="gbq-tier-res">오늘부터 알아가면 됩니다</b>
+          </div>
+          <div class="gbq-tier" data-min="5">
+            <span class="gbq-num">1</span>
+            <div class="gbq-tier-body"><span class="gbq-tag">레벨 1</span><p><span>정답 5개 이상<br>오늘 더 알고 가면 완벽!</span></p></div>
+            <b class="gbq-tier-res">기본기는 확실!</b>
+          </div>
+          <div class="gbq-tier" data-min="10">
+            <span class="gbq-num">2</span>
+            <div class="gbq-tier-body"><span class="gbq-tag">레벨 2</span><p><span>정답 10개 이상<br>역사 지킴이로 인정</span></p></div>
+            <b class="gbq-tier-res">자부심 뿜뿜</b>
+          </div>
+          <div class="gbq-tier" data-min="13">
+            <span class="gbq-num">3</span>
+            <div class="gbq-tier-body"><span class="gbq-tag">레벨 3</span><p><span>정답 13개 이상<br>역사 지식 만렙!</span></p></div>
+            <b class="gbq-tier-res">독립운동 전문가급 등극!</b>
+          </div>
+        </div>
+
+        <div class="gbq-result-actions">
+          <button class="gbq-btn gbq-ghost" id="gbq-retry" type="button">다시 풀기</button>
+          <button class="gbq-btn gbq-ghost" id="gbq-toExtra" type="button">이모저모 보러 가기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 이모저모 ═══════════════ -->
+  <section class="gbq-sec" id="gbq-extra">
+    <div class="gbq-shead">
+      <h2 class="gbq-stitle">광복절 <span class="gbq-b">이모저모</span></h2>
+      <p class="gbq-scap">광복절 태극기 게양법부터 <br class="gbq-brm">광복절 행사, <br class="gbq-brw">방문할만한 장소까지 <br class="gbq-brm">카드뉴스로 만나보세요</p>
+    </div>
+
+    <!-- 게양법 -->
+    <div class="gbq-more-block">
+      <div class="gbq-mb-head"><span class="gbq-num">01</span><h3>광복절 태극기 게양법</h3></div>
+      <div class="gbq-detail">
+        <figure class="gbq-flagfig">
+          <div class="gbq-ff-labels">
+            <div class="gbq-l1"><b>경축일 및 평일</b><small>광복절 · 삼일절 등</small></div>
+            <div class="gbq-l2"><b>조의를 표하는 날</b><small>현충일 · 국가장 기간 등</small></div>
+          </div>
+          <div class="gbq-ff-img"><img src="img/국기다는법.webp" alt="태극기 게양 방법 비교: 경축일에는 깃봉 끝까지, 조의를 표하는 날에는 깃면 너비만큼 내려 답니다" width="1200" height="800" decoding="async"></div>
+        </figure>
+        <div class="gbq-detail-body">
+          <ul class="gbq-checks">
+            <li>태극기는 깃봉 끝까지 올려 게양하기</li>
+            <li>권장 게양 시간은<span class="gbq-w-only"> 광복절</span> 당일 7시<span class="gbq-w-only">부터</span><span class="gbq-m-only">~</span>18시<span class="gbq-w-only">까지</span></li>
+            <li>게양 위치는 집 밖에서 볼 때<span class="gbq-w-only">를 기준으로</span> 중앙 또는 왼쪽</li>
+            <li>국기꽂이가 없다면 창문에, 차량용<span class="gbq-w-only"> 태극기</span>도 가능</li>
+          </ul>
+          <div class="gbq-linkbar">
+            <a href="https://www.mois.go.kr/frt/sub/a06/b08/nationalIcon_2_3/screen.do" target="_blank" rel="noopener">태극기 게양법 자세히 보기 (행정안전부)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 역사 스폿 -->
+    <div class="gbq-more-block">
+      <div class="gbq-mb-head"><span class="gbq-num gbq-b">02</span><h3><span class="gbq-w-only">광복절을 맞아 </span>방문하기 좋은 역사 스폿</h3></div>
+      <div class="gbq-spots">
+        <div class="gbq-spot">
+          <div class="gbq-imgslot gbq-has-img"><img src="img/광주학생독립운동기념관.webp" alt="광주학생독립운동기념관 전경" width="800" height="600" loading="lazy" decoding="async"></div>
+          <h4>광주학생독립운동기념관</h4>
+          <p>서구 학생독립로 30</p>
+        </div>
+        <div class="gbq-spot">
+          <div class="gbq-imgslot gbq-has-img"><img src="img/목포근대역사관.webp" alt="목포 근대역사관 전경" width="1200" height="799" loading="lazy" decoding="async"></div>
+          <h4>목포 근대역사관</h4>
+          <p>목포시 영산로29번길 6</p>
+        </div>
+      </div>
+      <div class="gbq-linkbar">
+        <a href="https://mfis.mpva.go.kr/memorial/mfisMovementList.do?gubunCode=DR&sid=663&searFacilgubun=&searTopicsort=&searAddr_sigun=%EA%B4%91%EC%A3%BC&searGbn=tit&searTxt=&pageIndex=1" target="_blank" rel="noopener">전남광주통합특별시 독립운동 현충시설 보기</a>
+        <a href="https://m.blog.naver.com/sandcastles81/224370633150" target="_blank" rel="noopener"><span class="gbq-w-only">모두크루 안규선 님이 취재한 광주 ‘평화의 소녀상’ 이야기</span><span class="gbq-m-only gbq-lb-m">광주 ‘평화의 소녀상’ 이야기 <small>(모두크루 안규선님 취재)</small></span></a>
+      </div>
+    </div>
+
+    <!-- 문화행사 -->
+    <div class="gbq-more-block">
+      <div class="gbq-mb-head"><span class="gbq-num">03</span><h3>문화행사로 만나는 81주년 광복절</h3></div>
+      <div class="gbq-cal-top">
+        <span class="gbq-cal-legend"><span class="gbq-dot"></span>광복절 문화행사</span>
+        <p class="gbq-cal-month">8월</p>
+      </div>
+      <div class="gbq-cal">
+        <div class="gbq-dow gbq-sun">일</div><div class="gbq-dow">월</div><div class="gbq-dow">화</div><div class="gbq-dow">수</div><div class="gbq-dow">목</div><div class="gbq-dow">금</div><div class="gbq-dow">토</div>
+        <div class="gbq-blank"></div><div class="gbq-blank"></div><div class="gbq-blank"></div><div class="gbq-blank"></div><div class="gbq-blank"></div><div class="gbq-blank"></div><div class="gbq-day gbq-sat">1</div>
+        <div class="gbq-day gbq-sun">2</div><div class="gbq-day">3</div><div class="gbq-day">4</div><div class="gbq-day">5</div><div class="gbq-day">6</div><div class="gbq-day">7</div><div class="gbq-day gbq-sat">8</div>
+        <div class="gbq-day gbq-sun">9</div><div class="gbq-day">10</div><div class="gbq-day">11</div><div class="gbq-day">12</div><div class="gbq-day">13</div><div class="gbq-day">14</div><div class="gbq-day gbq-event">15</div>
+        <div class="gbq-day gbq-sun">16</div><div class="gbq-day">17</div><div class="gbq-day">18</div><div class="gbq-day">19</div><div class="gbq-day">20</div><div class="gbq-day">21</div><div class="gbq-day gbq-event">22</div>
+        <div class="gbq-day gbq-sun">23</div><div class="gbq-day">24</div><div class="gbq-day">25</div><div class="gbq-day">26</div><div class="gbq-day">27</div><div class="gbq-day">28</div><div class="gbq-day gbq-sat">29</div>
+        <div class="gbq-day gbq-sun">30</div><div class="gbq-day">31</div><div class="gbq-blank"></div><div class="gbq-blank"></div><div class="gbq-blank"></div><div class="gbq-blank"></div><div class="gbq-blank"></div>
+      </div>
+      <ul class="gbq-events">
+        <li>
+          <div class="gbq-ev-date"><b>15</b><span>토</span></div>
+          <div class="gbq-ev-body"><h5>제81주년 광복절 경축식</h5><p>10:00 · 김대중컨벤션센터</p></div>
+        </li>
+        <li>
+          <div class="gbq-ev-date"><b>15</b><span>토</span></div>
+          <div class="gbq-ev-body"><h5>고려인마을 봉오동전투 재현행사</h5><p>10:00 · 고려인마을 일원</p></div>
+        </li>
+        <li>
+          <div class="gbq-ev-date"><b>22</b><span>토</span></div>
+          <div class="gbq-ev-body"><h5>광복절 81주년 <span class="gbq-w-only">기념 </span>특별공연 ‘함성’</h5><p>14시, 17시 · 나주문화예술회관</p></div>
+        </li>
+      </ul>
+    </div>
+
+    <p class="gbq-note">카드뉴스는 <b>내일 광주 블로그</b>에 올라갑니다!</p>
+  </section>
+
+  <!-- ═══════════════ INFO ═══════════════ -->
+  <div class="gbq-info">
+    <div class="gbq-info-msg">
+      <p class="gbq-sub">기억할수록 더 선명해지는<br>우리의 광복 이야기</p>
+    </div>
+  </div>
+
+  <footer>
+    <ul class="gbq-ftags">
+      <li>#광복절</li>
+      <li>#제81주년</li>
+      <li>#태극기게양법</li>
+      <li>#독립운동</li>
+      <li>#역사퀴즈</li>
+      <li>#전남광주통합특별시</li>
+      <li>#광주학생독립운동기념관</li>
+      <li>#목포근대역사관</li>
+      <li>#광복절문화행사</li>
+      <li>#8월15일</li>
+    </ul>
+    <p class="gbq-credit">이미지 출처 · 현충시설 정보서비스, 목포근대역사관, 목포문화관광</p>
+  </footer>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── 스코프 루트 확보 : 이 스크립트를 감싼 .contents_div 만 제어한다 ── */
+  var me = document.currentScript;
+  var root = me && me.closest ? me.closest('.contents_div') : null;
+  if (!root) {
+    var all = document.querySelectorAll('.contents_div');
+    root = all.length ? all[all.length - 1] : null;
+  }
+  if (!root || root.dataset.gbqReady === '1') return;
+  root.dataset.gbqReady = '1';
+
+  var $ = function (sel) { return root.querySelector(sel); };
+  var $$ = function (sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); };
+
+  var questions = $$('.gbq-q');
+  var doneEl = $('#gbq-done');
+  var gradeBtn = $('#gbq-grade');
+  var result = $('#gbq-result');
+  var scoreEl = $('#gbq-score');
+  var titleEl = $('#gbq-grade-title');
+  var msgEl = $('#gbq-grade-msg');
+  var flag = $('#gbq-flagGroup');
+  var firstSection = $('#gbq-quiz');
+  var TOTAL = questions.length;
+  var picked = {};
+
+  /* ── 보기 선택 ── */
+  questions.forEach(function (q, i) {
+    q.querySelectorAll('.gbq-ox button, .gbq-choices button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btn.parentNode.querySelectorAll('button').forEach(function (b) {
+          b.classList.remove('gbq-on');
+        });
+        btn.classList.add('gbq-on');
+        picked[i] = btn.dataset.v;
+        q.classList.add('gbq-answered');
+        updateProgress();
+      });
+    });
+  });
+
+  function updateProgress() {
+    var n = Object.keys(picked).length;
+    if (doneEl) doneEl.textContent = n;
+    if (!gradeBtn) return;
+    gradeBtn.disabled = n < TOTAL;
+    gradeBtn.textContent = n < TOTAL ? '채점하기 (' + (TOTAL - n) + '문제 남음)' : '채점하기';
+  }
+
+  /* ── 채점 ── */
+  function grade() {
+    var score = 0;
+    questions.forEach(function (q, i) {
+      var answer = q.dataset.answer;
+      var ok = picked[i] === answer;
+      if (ok) score++;
+      q.classList.add('gbq-graded', ok ? 'gbq-correct' : 'gbq-wrong');
+      var stamp = q.querySelector('.gbq-stamp');
+      if (stamp) stamp.textContent = ok ? '정답!' : '오답';
+      var target = q.querySelector('[data-v="' + answer + '"]');
+      if (target) target.classList.add('gbq-answer');
+    });
+    showResult(score);
+  }
+
+  function showResult(score) {
+    if (scoreEl) scoreEl.textContent = score;
+    var title, msg;
+    if (score >= 13) {
+      title = '독립운동 전문가급 등극!';
+      msg = '15문제 중 대부분을 맞혔어요. 오늘만큼은 자랑해도 됩니다!';
+    } else if (score >= 10) {
+      title = '자부심 뿜뿜';
+      msg = '기억하는 만큼 오래 남습니다. 광복절엔 가까운 역사 스폿도 들러 보세요.';
+    } else if (score >= 5) {
+      title = '기본기는 확실!';
+      msg = '오늘 더 알고 가면 완벽해요. 놓친 문제의 해설부터 천천히 읽어 보세요.';
+    } else {
+      title = '오늘부터 알아가면 됩니다';
+      msg = '해설을 하나씩 읽어 보세요. 다시 풀면 점수가 확 올라갑니다.';
+    }
+    if (titleEl) titleEl.textContent = title;
+    if (msgEl) msgEl.textContent = msg;
+
+    var tiers = $$('#gbq-gradeList .gbq-tier');
+    var reached = null;
+    tiers.forEach(function (t) {
+      if (score >= Number(t.dataset.min)) reached = t;
+    });
+    tiers.forEach(function (t) { t.classList.toggle('gbq-now', t === reached); });
+
+    if (result) result.classList.add('gbq-show');
+    if (flag) {
+      var y = 112 - (108 * (score / TOTAL));
+      requestAnimationFrame(function () {
+        flag.setAttribute('transform', 'translate(0,' + y.toFixed(1) + ')');
+      });
+    }
+    if (result) result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  if (gradeBtn) gradeBtn.addEventListener('click', grade);
+
+  var retryBtn = $('#gbq-retry');
+  if (retryBtn) retryBtn.addEventListener('click', function () {
+    picked = {};
+    questions.forEach(function (q) {
+      q.classList.remove('gbq-graded', 'gbq-correct', 'gbq-wrong', 'gbq-answered');
+      q.querySelectorAll('button').forEach(function (b) {
+        b.classList.remove('gbq-on', 'gbq-answer');
+      });
+      var stamp = q.querySelector('.gbq-stamp');
+      if (stamp) stamp.textContent = '정답';
+    });
+    if (result) result.classList.remove('gbq-show');
+    if (flag) flag.setAttribute('transform', 'translate(0,112)');
+    updateProgress();
+    if (firstSection) firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  var toExtra = $('#gbq-toExtra');
+  if (toExtra) toExtra.addEventListener('click', function () {
+    var el = $('#gbq-extra');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* ── 바로가기 : 호스트 페이지 URL 해시를 건드리지 않도록 직접 스크롤 ── */
+  $$('.gbq-jump-btn').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = (a.getAttribute('href') || '').replace('#', '');
+      var el = id ? $('#' + id) : null;
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /* ── 사진 문제 선택지 : 폭과 무관하게 한 줄 유지 ── */
+  var FIT_BASE = 16, FIT_MIN = 10;
+
+  function isNarrow() {
+    return root.clientWidth <= 600;
+  }
+
+  function fitBox(box, force) {
+    var btns = Array.prototype.slice.call(box.querySelectorAll('button'));
+    if (!btns.length) return;
+
+    var w = box.clientWidth;
+    if (!w) return;
+    if (!force && box.__gbqFitW === w) return;   /* 폭이 그대로면 다시 계산하지 않는다 */
+    box.__gbqFitW = w;
+
+    /* 텍스트 노드를 측정용 span 으로 감싼다 (최초 1회) */
+    btns.forEach(function (btn) {
+      if (btn.querySelector('.gbq-ctext')) return;
+      var mark = btn.querySelector('.gbq-mark');
+      var sp = document.createElement('span');
+      sp.className = 'gbq-ctext';
+      var n = mark ? mark.nextSibling : btn.firstChild;
+      while (n) { var nx = n.nextSibling; sp.appendChild(n); n = nx; }
+      btn.appendChild(sp);
+    });
+
+    /* 실측 → 축소 → 재실측. 글꼴 폭이 크기에 정비례하지 않으므로 반복한다 */
+    var size = isNarrow() ? 14.5 : FIT_BASE;
+    for (var k = 0; k < 10; k++) {
+      btns.forEach(function (btn) { btn.style.fontSize = size + 'px'; });
+      void box.offsetWidth;   /* 레이아웃 강제 반영 후 측정 */
+
+      var worst = 0;
+      btns.forEach(function (btn) {
+        var cs = getComputedStyle(btn);
+        var mk = btn.querySelector('.gbq-mark');
+        var avail = btn.clientWidth
+          - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)
+          - (mk ? mk.getBoundingClientRect().width : 0)
+          - (parseFloat(cs.columnGap) || 0);
+        var need = btn.querySelector('.gbq-ctext').getBoundingClientRect().width;
+        if (avail > 0 && need / avail > worst) worst = need / avail;
+      });
+
+      if (worst <= 1 || size <= FIT_MIN) break;
+      var next = Math.floor((size / worst) * 10) / 10;
+      if (next >= size) next = size - 0.1;
+      size = Math.max(FIT_MIN, next);
+    }
+  }
+
+  function fitAll(force) {
+    $$('.gbq-photoq .gbq-choices').forEach(function (box) { fitBox(box, force); });
+    fitHeads();
+  }
+
+  /* ── 블록 제목 : 폭을 실측해 한 줄에 들어가는 크기로 맞춘다 ── */
+  var heads = $$('.gbq-mb-head');
+
+  function headCurve() {
+    var vw = document.documentElement.clientWidth || root.clientWidth;
+    return Math.min(Math.max(18, 16 + 1.333 * vw / 100), 24);   /* CSS clamp 와 동일 */
+  }
+
+  function fitHeads() {
+    if (!heads.length) return;
+    if (!isNarrow()) {
+      heads.forEach(function (hd) {
+        var h = hd.querySelector('h3');
+        if (h) h.style.fontSize = '';
+      });
+      return;
+    }
+
+    var probe = document.createElement('span');
+    probe.setAttribute('aria-hidden', 'true');
+    probe.style.cssText = 'position:absolute;left:-9999px;top:0;' +
+                          'white-space:nowrap;visibility:hidden;pointer-events:none;';
+    root.appendChild(probe);
+
+    var best = headCurve();
+    heads.forEach(function (hd) {
+      var h = hd.querySelector('h3');
+      if (!h) return;
+      var cs = getComputedStyle(h);
+      probe.style.fontFamily = cs.fontFamily;
+      probe.style.fontWeight = cs.fontWeight;
+      probe.style.letterSpacing = cs.letterSpacing;
+      probe.style.fontSize = '100px';
+      probe.textContent = h.textContent.replace(/\s+/g, ' ').trim();
+      var per = probe.getBoundingClientRect().width / 100;   /* 글자크기 1px 당 폭 */
+      if (!per) return;
+
+      var avail = hd.clientWidth;
+      var num = hd.querySelector('.gbq-num');
+      if (num) {
+        avail -= num.getBoundingClientRect().width;
+        avail -= parseFloat(getComputedStyle(hd).columnGap) || 0;
+      }
+      avail -= 1;                                            /* 반올림 여유 */
+      if (avail <= 0) return;
+
+      var fit = Math.floor((avail / per) * 10) / 10;
+      if (fit < best) best = fit;
+    });
+
+    root.removeChild(probe);
+    best = Math.max(15, best);                               /* 너무 작아지지 않게 */
+    heads.forEach(function (hd) {
+      var h = hd.querySelector('h3');
+      if (h) h.style.fontSize = best + 'px';
+    });
+  }
+
+  fitAll(true);
+
+  /* 폭 변화 감지는 window resize 대신 루트 요소 관찰로 처리한다 */
+  if (window.ResizeObserver) {
+    var boxRO = new ResizeObserver(function (entries) {
+      entries.forEach(function (e) { fitBox(e.target, false); });
+    });
+    $$('.gbq-photoq .gbq-choices').forEach(function (box) { boxRO.observe(box); });
+
+    var rootT;
+    var rootRO = new ResizeObserver(function () {
+      clearTimeout(rootT);
+      rootT = setTimeout(function () { fitAll(true); }, 150);
+    });
+    rootRO.observe(root);
+  }
+
+  /* 웹폰트가 늦게 적용되면 글자 폭이 달라지므로 다시 잰다 */
+  requestAnimationFrame(function () { fitAll(true); });
+  setTimeout(function () { fitAll(true); }, 400);
+  setTimeout(function () { fitAll(true); }, 1500);
+  if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
+    document.fonts.ready.then(function () { fitAll(true); })['catch'](function () {});
+  }
+
+  /* ── 달력 : 오늘 날짜 표시 (8월일 때만) ── */
+  (function () {
+    var cal = $('#gbq-extra .gbq-cal');
+    if (!cal) return;
+    var now = new Date();
+    if (now.getMonth() !== 7) return;               /* 0=1월, 7=8월 */
+    var d = String(now.getDate());
+    var days = cal.querySelectorAll('.gbq-day');
+    for (var i = 0; i < days.length; i++) {
+      if (days[i].textContent.replace(/\s/g, '') === d) {
+        days[i].classList.add('gbq-today');
+        days[i].setAttribute('aria-current', 'date');
+        days[i].setAttribute('title', '오늘');
+        var nm = document.createElement('span');
+        nm.className = 'gbq-tdnum';
+        nm.textContent = d;
+        var lb = document.createElement('span');
+        lb.className = 'gbq-tdlabel';
+        lb.textContent = 'today';
+        days[i].textContent = '';
+        days[i].appendChild(nm);
+        days[i].appendChild(lb);
+        break;
+      }
+    }
+  })();
+
+  updateProgress();
+})();
+</script>
+</div>
+<!-- ══════════ // 광복절 퀴즈 상세페이지 ══════════ -->
