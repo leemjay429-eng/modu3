@@ -50,6 +50,7 @@
   --gbq-red-soft:#ffe1d8;
   --gbq-blue:#3b77cc;
   --gbq-blue-deep:#2b5aa6;
+  --gbq-navy:#173a6d;
   --gbq-blue-soft:#dceaff;
   --gbq-yellow:#ffd75e;
   --gbq-yellow-soft:#fff3cd;
@@ -617,6 +618,39 @@
 .contents_div .gbq-ev-body{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;}
 .contents_div .gbq-ev-body h5{margin:0;font-size:17px;font-family:var(--gbq-body);font-weight:700;}
 .contents_div .gbq-ev-body p{margin:0;font-size:15px;color:var(--gbq-ink-soft);}
+/* 광복절 가이드 바로가기 CTA */
+.contents_div .gbq-guide-cta{
+  display:flex;align-items:center;justify-content:flex-start;gap:21.5px;
+  width:100%;margin:0;padding:8px 24px 8px 8px;
+  border:2px solid var(--gbq-navy);border-radius:18px;
+  background:var(--gbq-blue-deep);color:#fff;
+  font-family:var(--gbq-body);font-weight:700;line-height:1.35;
+  letter-spacing:-.02em;text-align:left;
+  word-break:keep-all;overflow-wrap:break-word;
+  transition:all .14s ease;
+}
+/* 블로그 프로필 이미지 자리 (직사각 프레임) */
+.contents_div .gbq-guide-cta .gbq-cta-pic{
+  flex:none;height:100px;aspect-ratio:1.33;border-radius:12px;overflow:hidden;
+  background:#fff;border:2px solid #fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.contents_div .gbq-guide-cta .gbq-cta-pic img{
+  width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;
+}
+.contents_div .gbq-guide-cta .gbq-cta-tx{
+  display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+}
+.contents_div .gbq-guide-cta .gbq-cta-t1{font-size:15px;font-weight:600;color:rgba(255,255,255,.86);}
+.contents_div .gbq-guide-cta .gbq-cta-t2{font-size:19.5px;font-weight:700;}
+.contents_div .gbq-guide-cta::after{
+  content:"\2192";flex:none;margin-left:auto;width:24px;height:24px;border-radius:50%;
+  background:rgba(255,255,255,.3);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:12px;
+  transition:transform .14s ease;
+}
+.contents_div .gbq-guide-cta:hover{background:var(--gbq-blue);}
+.contents_div .gbq-guide-cta:hover::after{transform:translateX(3px);}
 
 /* 이모저모 섹션 배경 + 블루 계열 라인/캡슐 */
 .contents_div #gbq-extra{background:#cbe5ff;}
@@ -666,9 +700,10 @@
   padding:30px 46px;background:#cbe5ff;border-top:2px solid #8ab4e5;
 }
 .contents_div .gbq-info p.gbq-sub{
-  margin:25px 0 10px;font-family:var(--gbq-display);font-weight:700;font-size:30px;
-  color:var(--gbq-ink);line-height:1.4;text-align:center;word-break:keep-all;
+  margin:40px 0 10px;font-family:var(--gbq-display);font-weight:700;font-size:30px;
+  color:var(--gbq-ink);line-height:1.32;text-align:center;word-break:keep-all;
 }
+.contents_div .gbq-info-msg{width:100%;}
 .contents_div .gbq-info-share{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
 .contents_div .gbq-share-btn{
   flex:none;width:48px;height:48px;padding:0;cursor:pointer;
@@ -781,6 +816,12 @@
   .contents_div .gbq-ev-date span{font-size:10px;}
   .contents_div .gbq-ev-body{gap:2px 10px;}
   .contents_div .gbq-ev-body h5{font-size:14.5px;letter-spacing:-.02em;}
+  .contents_div .gbq-guide-cta{margin:0;padding:7px 16px 7px 7px;gap:11px;}
+  .contents_div .gbq-guide-cta .gbq-cta-t1{font-size:13px;}
+  .contents_div .gbq-guide-cta .gbq-cta-t2{font-size:16.5px;}
+  .contents_div .gbq-guide-cta .gbq-cta-pic{height:78px;border-radius:10px;}
+  .contents_div .gbq-guide-cta .gbq-cta-pic img{border-radius:8px;}
+  .contents_div .gbq-guide-cta::after{width:20px;height:20px;font-size:10.5px;}
   /* 1행 : 태극기 + 점수/등급 / 2행 : 설명 문구는 전체 폭 */
   .contents_div .gbq-result-card{display:flex;flex-direction:column;align-items:stretch;gap:10px;}
   .contents_div .gbq-result-head{display:flex;align-items:center;justify-content:center;gap:12px;}
@@ -866,6 +907,10 @@
   .contents_div .gbq-cal{padding:8px;}
   .contents_div .gbq-cal div{min-height:38px;font-size:12.5px;}
   .contents_div .gbq-cal .gbq-day.gbq-today .gbq-tdnum{width:23px;height:23px;font-size:13px;}
+  .contents_div .gbq-guide-cta{padding:6px 13px 6px 6px;gap:9px;}
+  .contents_div .gbq-guide-cta .gbq-cta-t1{font-size:12px;}
+  .contents_div .gbq-guide-cta .gbq-cta-t2{font-size:15px;}
+  .contents_div .gbq-guide-cta .gbq-cta-pic{height:66px;}
   .contents_div .gbq-spec dt{width:72px;}
   .contents_div .gbq-info p.gbq-sub{font-size:21px;}
 }
@@ -1339,7 +1384,7 @@
         </div>
       </div>
       <div class="gbq-linkbar">
-        <a href="https://mfis.mpva.go.kr/memorial/mfisMovementList.do?gubunCode=DR&sid=663&searFacilgubun=&searTopicsort=&searAddr_sigun=%EA%B4%91%EC%A3%BC&searGbn=tit&searTxt=&pageIndex=1" target="_blank" rel="noopener">전남광주통합특별시 독립운동 현충시설 보기</a>
+        <a href="https://mfis.mpva.go.kr/memorial/mfisMovementList.do?gubunCode=DR&sid=&pageIndex=1&searFacilgubun=&searTopicsort=&searAddr_sigun=%EC%A0%84%EB%82%A8&searMpvabranch=&searVR=&searInfo=&searGbn=tit&searTxt=" target="_blank" rel="noopener">전남광주통합특별시 독립운동 현충시설 보기</a>
         <a href="https://m.blog.naver.com/sandcastles81/224370633150" target="_blank" rel="noopener"><span class="gbq-w-only">모두크루 안규선 님이 취재한 광주 ‘평화의 소녀상’ 이야기</span><span class="gbq-m-only gbq-lb-m">광주 ‘평화의 소녀상’ 이야기 <small>(모두크루 안규선님 취재)</small></span></a>
       </div>
     </div>
@@ -1380,6 +1425,7 @@
   <!-- ═══════════════ INFO ═══════════════ -->
   <div class="gbq-info">
     <div class="gbq-info-msg">
+      <a class="gbq-guide-cta" href="https://blog.naver.com/jeonnam-gwangju-city/224376336292" target="_blank" rel="noopener"><span class="gbq-cta-pic"><img src="img/블로그프로필.webp" alt=""></span><span class="gbq-cta-tx"><span class="gbq-cta-t1">전남광주통합특별시</span><span class="gbq-cta-t2">광복절 가이드 바로가기</span></span></a>
       <p class="gbq-sub">기억할수록 더 선명해지는<br>우리의 광복 이야기</p>
     </div>
   </div>
