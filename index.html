@@ -267,6 +267,9 @@
 .contents_div .gbq-lead b{font-family:var(--gbq-display);font-size:20px;line-height:1.5;color:var(--gbq-ink);font-weight:700;}
 .contents_div .gbq-guide-band{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .contents_div .gbq-guide-band .gbq-imgslot{height:190px;}
+/* 가이드 3칸도 본문 카드와 동일한 실선 프레임 사용 */
+.contents_div .gbq-guide-band .gbq-imgslot,
+.contents_div .gbq-guide-band .gbq-imgslot.gbq-has-img{border:2px solid var(--gbq-line-card);}
 .contents_div .gbq-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px;list-style:none;padding:0;}
 .contents_div .gbq-steps li{text-align:center;position:relative;}
 .contents_div .gbq-steps li:not(:last-child)::after{
@@ -422,14 +425,21 @@
 
 .contents_div .gbq-result{display:none;margin-top:30px;padding-top:28px;border-top:2px dashed var(--gbq-line-2);}
 .contents_div .gbq-result.gbq-show{display:block;}
-.contents_div .gbq-result-card{display:flex;gap:26px;align-items:center;text-align:left;}
-.contents_div .gbq-pole{width:104px;height:150px;flex:none;}
+.contents_div .gbq-result-card{
+  display:grid;grid-template-columns:auto minmax(0,auto);justify-content:center;
+  column-gap:18px;align-items:center;text-align:left;
+}
+.contents_div .gbq-result-head{display:contents;}
+.contents_div .gbq-pole{grid-column:1;grid-row:1 / 3;}
+.contents_div .gbq-result-copy{grid-column:2;grid-row:1;}
+.contents_div .gbq-result-msg{grid-column:2;grid-row:2;}
+.contents_div .gbq-pole{width:79px;height:150px;flex:none;}
 .contents_div .gbq-pole svg{width:100%;height:100%;overflow:visible;}
 .contents_div .gbq-flag-group{transition:transform 1.3s cubic-bezier(.22,.9,.24,1);}
 .contents_div .gbq-result-score{font-family:var(--gbq-display);font-weight:400;font-size:17px;color:var(--gbq-ink-soft);margin:0;}
 .contents_div .gbq-result-score b{font-family:var(--gbq-display);font-weight:700;color:var(--gbq-red);font-size:44px;line-height:1;}
 .contents_div .gbq-result-grade{font-family:var(--gbq-display);font-weight:700;font-size:23px;margin:5px 0 5px;}
-.contents_div .gbq-result-msg{margin:0;font-size:15.5px;color:var(--gbq-ink-soft);line-height:1.6;}
+.contents_div .gbq-result-msg{margin:0;font-size:15.5px;color:var(--gbq-ink-soft);line-height:1.6;word-break:keep-all;}
 
 /* 등급 : 레퍼런스 OPTION & PRICE 행 스타일 */
 .contents_div .gbq-tiers{
@@ -449,6 +459,7 @@
   display:flex;align-items:center;justify-content:center;
   min-height:calc(13.5px * 1.5 * 3);   /* 가장 긴 항목(3줄) 높이 확보 → 짧은 항목은 세로 가운데 */
 }
+.contents_div .gbq-tier-body p .gbq-mo{display:none;}
 .contents_div .gbq-tier-res{
   font-family:var(--gbq-body);font-weight:700;font-size:14px;line-height:20px;color:var(--gbq-ink-faint);
   padding-top:9px;border-top:2px dashed var(--gbq-line-2);width:100%;word-break:keep-all;
@@ -460,6 +471,25 @@
 .contents_div .gbq-tier.gbq-now .gbq-tag{background:var(--gbq-red-soft);color:var(--gbq-red);}
 .contents_div .gbq-tier.gbq-now .gbq-tier-res{color:var(--gbq-ink);}
 .contents_div .gbq-result-actions{margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+/* ▼▼▼ 확인용 미리보기 바 : 배포 전 이 블록만 지우세요 ▼▼▼ */
+.contents_div .gbq-devbar{
+  position:sticky;bottom:8px;z-index:50;margin-top:26px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;
+  padding:9px 10px;border:2px dashed var(--gbq-red);border-radius:14px;
+  background:rgba(255,255,255,.95);
+}
+.contents_div .gbq-devbar b{
+  font-family:var(--gbq-body);font-weight:700;font-size:11.5px;
+  letter-spacing:.04em;color:var(--gbq-red);margin-right:2px;
+}
+.contents_div .gbq-devbar button{
+  border:2px solid var(--gbq-line-card);border-radius:999px;background:#fff;
+  padding:5px 11px;font-size:12.5px;font-weight:700;color:var(--gbq-ink);
+  cursor:pointer;line-height:1.2;
+}
+.contents_div .gbq-devbar button:hover{background:var(--gbq-yellow-soft);}
+/* ▲▲▲ 확인용 미리보기 바 끝 ▲▲▲ */
 
 /* ══════════ MORE : 게양법 ══════════ */
 .contents_div .gbq-detail{display:grid;grid-template-columns:285px 1fr;gap:20px;align-items:stretch;}
@@ -498,6 +528,7 @@
 .contents_div .gbq-checks li{
   display:flex;gap:11px;font-size:16px;line-height:1.6;align-items:flex-start;padding:11px 0;
 }
+.contents_div .gbq-checks li>.gbq-ck-t{flex:1 1 auto;min-width:0;}   /* li 가 flex 라 내부 텍스트를 한 덩어리로 묶는다 */
 .contents_div .gbq-checks li+li{border-top:1px solid #bcd8f5;}
 .contents_div .gbq-checks li:first-child{padding-top:0;}
 .contents_div .gbq-checks li:last-child{padding-bottom:0;}
@@ -699,7 +730,7 @@
   .contents_div .gbq-round-bar .gbq-rb-tag{font-size:10px;padding:4px 5px;line-height:1.2;}
   .contents_div .gbq-round-bar .gbq-rb-name{flex:none;width:100%;}
   .contents_div .gbq-guide-band{grid-template-columns:repeat(3,1fr);gap:8px;}
-  .contents_div .gbq-guide-band .gbq-imgslot{height:86px;padding:6px;font-size:10px;gap:0;border-radius:12px;}
+  .contents_div .gbq-guide-band .gbq-imgslot{aspect-ratio:5/4.5;height:auto;padding:6px;font-size:10px;gap:0;border-radius:12px;}
   .contents_div .gbq-guide-band .gbq-imgslot small{display:none;}
   .contents_div .gbq-steps{grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;}
   .contents_div .gbq-steps li:not(:last-child)::after{right:-11px;top:3px;font-size:11px;}
@@ -757,12 +788,30 @@
   .contents_div .gbq-ev-date span{font-size:10px;}
   .contents_div .gbq-ev-body{gap:2px 10px;}
   .contents_div .gbq-ev-body h5{font-size:14.5px;letter-spacing:-.02em;}
-  .contents_div .gbq-result-card{flex-direction:column;text-align:center;}
+  /* 1행 : 태극기 + 점수/등급 / 2행 : 설명 문구는 전체 폭 */
+  .contents_div .gbq-result-card{display:flex;flex-direction:column;align-items:stretch;gap:10px;}
+  .contents_div .gbq-result-head{display:flex;align-items:center;justify-content:center;gap:12px;}
+  .contents_div .gbq-result-copy{display:block;}
+  .contents_div .gbq-result-score,
+  .contents_div .gbq-result-grade{text-align:center;}
+  .contents_div .gbq-result-grade{margin:2px 0 0;}
+  .contents_div .gbq-result-msg{text-align:center;}
+  .contents_div .gbq-score-box{padding:24px 16px;}
+  .contents_div .gbq-pole{width:56px;height:107px;}
+  .contents_div .gbq-result-score b{font-size:34px;}
+  .contents_div .gbq-result-grade{font-size:18px;}
   .contents_div .gbq-tiers{grid-template-columns:1fr;text-align:left;}
-  .contents_div .gbq-tier{flex-direction:row;flex-wrap:wrap;align-items:center;gap:14px;padding:14px 16px;}
-  .contents_div .gbq-tier-body{flex:1 1 0;min-width:0;align-items:flex-start;text-align:left;}
-  .contents_div .gbq-tier-body p{justify-content:flex-start;min-height:0;}
-  .contents_div .gbq-tier-res{width:100%;padding:10px 0 0;text-align:left;justify-content:flex-start;min-height:0;}
+  .contents_div .gbq-tier{flex-direction:row;flex-wrap:wrap;align-items:center;gap:9px;padding:11px 14px;}
+  .contents_div .gbq-tier .gbq-num{display:none;}   /* 레벨 태그가 있으므로 번호 배지 생략 */
+  .contents_div .gbq-tier-body{flex:1 1 0;min-width:0;flex-direction:row;align-items:center;gap:8px;text-align:left;}
+  .contents_div .gbq-tier-body p{justify-content:flex-start;min-height:0;font-size:9px;line-height:1.4;}
+  .contents_div .gbq-tier-body .gbq-tag{flex:none;font-size:10px;padding:2px 8px;}
+  .contents_div .gbq-tier-body p .gbq-pc{display:none;}
+  .contents_div .gbq-tier-body p .gbq-mo{display:inline;}
+  .contents_div .gbq-tier-res{display:none;}   /* 모바일은 점선 아래 문구 숨김 */
+  /* 결과 버튼 두 개를 한 줄에 */
+  .contents_div .gbq-result-actions{gap:8px;flex-wrap:nowrap;}
+  .contents_div .gbq-btn.gbq-ghost{font-size:13.5px;padding:10px 14px;white-space:nowrap;}
   .contents_div .gbq-cal-month{font-size:30px;}
   .contents_div .gbq-cal{padding:10px;gap:3px;}
   .contents_div .gbq-cal div{min-height:41px;font-size:13.5px;border-radius:9px;}
@@ -872,9 +921,9 @@
     </div>
 
     <div class="gbq-guide-band">
-      <div class="gbq-imgslot"><span>이미지 자리 ①</span><small>권장 240 × 190 px</small></div>
-      <div class="gbq-imgslot"><span>이미지 자리 ②</span><small>권장 240 × 190 px</small></div>
-      <div class="gbq-imgslot"><span>이미지 자리 ③</span><small>권장 240 × 190 px</small></div>
+      <div class="gbq-imgslot gbq-has-img"><img src="img/퀴즈안내1.webp" alt="15문제를 풀어요 안내 이미지" width="240" height="190" loading="lazy" decoding="async"></div>
+      <div class="gbq-imgslot gbq-has-img"><img src="img/퀴즈안내2.webp" alt="채점하기를 눌러요 안내 이미지" width="240" height="190" loading="lazy" decoding="async"></div>
+      <div class="gbq-imgslot gbq-has-img"><img src="img/퀴즈안내3.webp" alt="내 광복 점수 확인 안내 이미지" width="240" height="190" loading="lazy" decoding="async"></div>
     </div>
 
     <ol class="gbq-steps">
@@ -886,9 +935,9 @@
     <div class="gbq-before-box">
       <p class="gbq-bb-title">참여 전 체크</p>
       <ul class="gbq-checks">
-        <li>퀴즈 결과는 저장되지 않아요. 화면을 새로 고치면 처음부터 다시 풀어야 합니다.</li>
-        <li>모든 문제를 풀어야 채점 버튼이 활성화됩니다.</li>
-        <li>정답 해설은 채점 후 각 문제 아래에서 확인할 수 있어요.</li>
+        <li><span class="gbq-ck-t">퀴즈 결과는 저장되지 않아요. 화면을 새로 고치면 처음부터 다시 풀어야 합니다.</span></li>
+        <li><span class="gbq-ck-t">모든 문제를 풀어야 채점 버튼이 활성화됩니다.</span></li>
+        <li><span class="gbq-ck-t">정답 해설은 채점 후 각 문제 아래에서 확인할 수 있어요.</span></li>
       </ul>
     </div>
   </section>
@@ -1152,12 +1201,13 @@
 
       <div class="gbq-result" id="gbq-result">
         <div class="gbq-result-card">
+          <div class="gbq-result-head">
           <div class="gbq-pole">
-            <svg viewBox="0 0 110 160" aria-hidden="true">
+            <svg viewBox="2 0 84 160" aria-hidden="true">
               <line x1="18" y1="10" x2="18" y2="150" stroke="#02051b" stroke-width="4" stroke-linecap="round"/>
               <circle cx="18" cy="8" r="6" fill="#ffd75e" stroke="#02051b" stroke-width="2.5"/>
               <rect x="4" y="150" width="28" height="6" rx="3" fill="#02051b"/>
-              <g class="gbq-flag-group" id="gbq-flagGroup" transform="translate(0,112)">
+              <g class="gbq-flag-group" id="gbq-flagGroup" transform="translate(0,109)">
                 <g transform="translate(18.0000,-0.0020) scale(0.704535)">
                 <path fill="#090d25" d="M92.3,49.52v-23.42c0-.1.03-.19.08-.25.13-.17.23-.35.22-.56l-.62-13.52c0-.13-.05-.26-.1-.38-.42-.94-.42-2.72-.07-3.63.06-.14.1-.29.09-.44-.05-1.58-.29-3.11-.25-4.75.02-.9-.26-1.59-.81-2.08-.9-.8-4.59-.49-6.69.04-4.12,1.06-8.29,1.04-12.53,1.49-5.28.55-10.55,1.15-15.88,1.22-.18,0-.34.07-.49.17-.61.38-1.52.32-1.82-.14h-.82c-.3.46-1.12.51-1.54.15-.15-.13-.35-.17-.55-.17-8.44-.11-16.77-.65-25.35-1.28L8.09.69s.01-.02.02-.03C5.25.61.44-1.05,0,2.89c0,5.66.41,9.22.43,14.03l.22,53.65c0,1.49,2.52,2.55,3.78,2.49,5.99-.27,11.4.33,17.36.51,11.02.32,21.79.35,32.75-.09l13.19-.99,6.72-.77,9.34-1.42,6.72-1.13c1.04-.18,1.43-1.3,1.48-2.24l.54-9.63.09-6.86c0-.24-.1-.46-.24-.66-.05-.07-.09-.16-.09-.27ZM90.27,55.98c0,.33-.23.44-.41.2l-.24,9.55c-.01.47-.35.87-.81.96-13.93,2.71-26.91,3.61-40.83,4.23-.04.23-.19.42-.46.42h-8.78c-.24,0-.38-.22-.22-.36h-6.58c-.13,0-.26.04-.38.09-1.07.44-2.45.43-3.22-.09h-.69c-.85.53-2.69.56-3.21.17-.17-.13-.35-.24-.56-.25-6.52-.24-12.91-.94-19.52-1.21-.53-.02-.95-.45-.95-.98l-.09-36.82.06-14.51c-.11-.09-.31-.1-.4-.18-.12-.11-.21-.35-.21-.62v-8.21c0-.19.04-.35.1-.44.14-.21.26-.42.26-.67v-3.02c0-.56.46-1,1.03-1,1.8.03,3.48.31,5.3.45l20.07,1.46c4.91.36,9.58.86,14.49.85.11-.12.25-.33.49-.33h13.18c.24,0,.38.21.22.31,3.23,0,6.35-.41,9.57-.73l12.14-1.19c2.75-.27,5.6-1.09,8.49-1.13.53,0,.96.43.98.96l.67,18.04c.01.3.1.62.35.79.09.06.16.18.16.35v32.93Z"/>
                   <path fill="#0b0a0a" d="M92.64,50.02c-.12-.1-.33-.24-.33-.5v-23.42c0-.26.21-.39.32-.38v24.29Z"/>
@@ -1208,8 +1258,9 @@
           <div class="gbq-result-copy">
             <p class="gbq-result-score">15문제 중 <b id="gbq-score">0</b>개 정답</p>
             <p class="gbq-result-grade" id="gbq-grade-title">—</p>
-            <p class="gbq-result-msg" id="gbq-grade-msg">—</p>
           </div>
+          </div>
+          <p class="gbq-result-msg" id="gbq-grade-msg">—</p>
         </div>
 
         <div class="gbq-tiers" id="gbq-gradeList">
@@ -1225,12 +1276,12 @@
           </div>
           <div class="gbq-tier" data-min="10">
             <span class="gbq-num">2</span>
-            <div class="gbq-tier-body"><span class="gbq-tag">레벨 2</span><p><span>정답 10개 이상<br>역사 지킴이로 인정</span></p></div>
+            <div class="gbq-tier-body"><span class="gbq-tag">레벨 2</span><p><span class="gbq-pc">정답 10개 이상<br>역사 지킴이로 인정</span><span class="gbq-mo">정답 10개 이상<br>역사지킴이 자부심 뿜뿜</span></p></div>
             <b class="gbq-tier-res">자부심 뿜뿜</b>
           </div>
           <div class="gbq-tier" data-min="13">
             <span class="gbq-num">3</span>
-            <div class="gbq-tier-body"><span class="gbq-tag">레벨 3</span><p><span>정답 13개 이상<br>역사 지식 만렙!</span></p></div>
+            <div class="gbq-tier-body"><span class="gbq-tag">레벨 3</span><p><span class="gbq-pc">정답 13개 이상<br>역사 지식 만렙!</span><span class="gbq-mo">정답 13개 이상<br>독립운동 전문가급 등극!</span></p></div>
             <b class="gbq-tier-res">독립운동 전문가급 등극!</b>
           </div>
         </div>
@@ -1241,6 +1292,17 @@
         </div>
       </div>
     </div>
+
+    <!-- ▼▼▼ 확인용 미리보기 바 : 배포 전 이 블록만 지우세요 ▼▼▼ -->
+    <div class="gbq-devbar" aria-label="결과 미리보기">
+      <b>미리보기</b>
+      <button type="button" data-gbq-preview="3">레벨 0 (3점)</button>
+      <button type="button" data-gbq-preview="7">레벨 1 (7점)</button>
+      <button type="button" data-gbq-preview="11">레벨 2 (11점)</button>
+      <button type="button" data-gbq-preview="14">레벨 3 (14점)</button>
+      <button type="button" data-gbq-preview="off">닫기</button>
+    </div>
+    <!-- ▲▲▲ 확인용 미리보기 바 끝 ▲▲▲ -->
   </section>
 
   <!-- ═══════════════ 이모저모 ═══════════════ -->
@@ -1263,10 +1325,10 @@
         </figure>
         <div class="gbq-detail-body">
           <ul class="gbq-checks">
-            <li>태극기는 깃봉 끝까지 올려 게양하기</li>
-            <li>권장 게양 시간은<span class="gbq-w-only"> 광복절</span> 당일 7시<span class="gbq-w-only">부터</span><span class="gbq-m-only">~</span>18시<span class="gbq-w-only">까지</span></li>
-            <li>게양 위치는 집 밖에서 볼 때<span class="gbq-w-only">를 기준으로</span> 중앙 또는 왼쪽</li>
-            <li>국기꽂이가 없다면 창문에, 차량용<span class="gbq-w-only"> 태극기</span>도 가능</li>
+            <li><span class="gbq-ck-t">태극기는 깃봉 끝까지 올려 게양하기</span></li>
+            <li><span class="gbq-ck-t">권장 게양 시간은<span class="gbq-w-only"> 광복절</span> 당일 7시<span class="gbq-w-only">부터 </span><span class="gbq-m-only">~</span>18시<span class="gbq-w-only">까지</span></span></li>
+            <li><span class="gbq-ck-t">게양 위치는 집 밖에서 볼 때<span class="gbq-w-only">를 기준으로</span> 중앙 또는 왼쪽</span></li>
+            <li><span class="gbq-ck-t">국기꽂이가 없다면 창문에, 차량용<span class="gbq-w-only"> 태극기</span>도 가능</span></li>
           </ul>
           <div class="gbq-linkbar">
             <a href="https://www.mois.go.kr/frt/sub/a06/b08/nationalIcon_2_3/screen.do" target="_blank" rel="noopener">태극기 게양법 자세히 보기 (행정안전부)</a>
@@ -1423,24 +1485,24 @@
     showResult(score);
   }
 
-  function showResult(score) {
+  function showResult(score, quiet) {
     if (scoreEl) scoreEl.textContent = score;
     var title, msg;
     if (score >= 13) {
       title = '독립운동 전문가급 등극!';
-      msg = '15문제 중 대부분을 맞혔어요. 오늘만큼은 자랑해도 됩니다!';
+      msg = '15문제 중 대부분을 맞혔어요.<br class="gbq-m-br"> 오늘만큼은 자랑해도 됩니다!';
     } else if (score >= 10) {
       title = '자부심 뿜뿜';
-      msg = '기억하는 만큼 오래 남습니다. 광복절엔 가까운 역사 스폿도 들러 보세요.';
+      msg = '기억하는 만큼 오래 남습니다.<br class="gbq-m-br"> 광복절엔 가까운 역사 스폿도 들러 보세요.';
     } else if (score >= 5) {
       title = '기본기는 확실!';
-      msg = '오늘 더 알고 가면 완벽해요. 놓친 문제의 해설부터 천천히 읽어 보세요.';
+      msg = '오늘 더 알고 가면 완벽해요.<br class="gbq-m-br"> 놓친 문제의 해설부터 천천히 읽어 보세요.';
     } else {
       title = '오늘부터 알아가면 됩니다';
-      msg = '해설을 하나씩 읽어 보세요. 다시 풀면 점수가 확 올라갑니다.';
+      msg = '해설을 하나씩 읽어 보세요.<br class="gbq-m-br"> 다시 풀면 점수가 확 올라갑니다.';
     }
     if (titleEl) titleEl.textContent = title;
-    if (msgEl) msgEl.textContent = msg;
+    if (msgEl) msgEl.innerHTML = msg;   /* 고정 문자열 + 모바일 줄바꿈 태그 */
 
     var tiers = $$('#gbq-gradeList .gbq-tier');
     var reached = null;
@@ -1451,15 +1513,25 @@
 
     if (result) result.classList.add('gbq-show');
     if (flag) {
-      var y = 112 - (108 * (score / TOTAL));
+      var y = 109 - (105 * (score / TOTAL));
       requestAnimationFrame(function () {
         flag.setAttribute('transform', 'translate(0,' + y.toFixed(1) + ')');
       });
     }
-    if (result) result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (result && !quiet) result.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   if (gradeBtn) gradeBtn.addEventListener('click', grade);
+
+  /* ▼▼▼ 확인용 미리보기 바 : 배포 전 이 블록만 지우세요 ▼▼▼ */
+  $$('.gbq-devbar button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.dataset.gbqPreview;
+      if (v === 'off') { if (result) result.classList.remove('gbq-show'); return; }
+      showResult(Number(v), true);
+    });
+  });
+  /* ▲▲▲ 확인용 미리보기 바 끝 ▲▲▲ */
 
   var retryBtn = $('#gbq-retry');
   if (retryBtn) retryBtn.addEventListener('click', function () {
@@ -1473,7 +1545,7 @@
       if (stamp) stamp.textContent = '정답';
     });
     if (result) result.classList.remove('gbq-show');
-    if (flag) flag.setAttribute('transform', 'translate(0,112)');
+    if (flag) flag.setAttribute('transform', 'translate(0,109)');
     updateProgress();
     if (firstSection) firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
