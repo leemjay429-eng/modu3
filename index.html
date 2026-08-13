@@ -232,9 +232,14 @@
   68% {transform:translate3d(.5%,0,0) scale(1.004);}
   100%{opacity:1;transform:translate3d(0,0,0) scale(1);}
 }
-.contents_div .gbq-lyr-boy{animation:gbq-hero-pop .78s cubic-bezier(.2,.72,.3,1) .18s backwards;}
-.contents_div .gbq-lyr-girl{animation:gbq-hero-pop .78s cubic-bezier(.2,.72,.3,1) .46s backwards;}
-.contents_div .gbq-lyr-bird{animation:gbq-hero-fly-bird .9s cubic-bezier(.32,.58,.36,1) .8s backwards;}
+/* 임베드용 페이지라 로드 시점이 아니라 화면에 들어올 때 실행한다.
+   .gbq-armed / .gbq-in 은 스크립트가 부여 (스크립트·모션축소 환경에서는 그냥 보임) */
+.contents_div .gbq-hero-art.gbq-armed .gbq-lyr-boy,
+.contents_div .gbq-hero-art.gbq-armed .gbq-lyr-girl,
+.contents_div .gbq-hero-art.gbq-armed .gbq-lyr-bird{opacity:0;}
+.contents_div .gbq-hero-art.gbq-in .gbq-lyr-boy{animation:gbq-hero-pop .78s cubic-bezier(.2,.72,.3,1) .18s both;}
+.contents_div .gbq-hero-art.gbq-in .gbq-lyr-girl{animation:gbq-hero-pop .78s cubic-bezier(.2,.72,.3,1) .46s both;}
+.contents_div .gbq-hero-art.gbq-in .gbq-lyr-bird{animation:gbq-hero-fly-bird .9s cubic-bezier(.32,.58,.36,1) .8s both;}
 
 /* ② 상시 : 셋 다 위아래 둥둥 (0에서 시작·종료 → 등장 끝과 이음새 없음) */
 @keyframes gbq-bob-s{
@@ -249,13 +254,14 @@
   0%,100%{transform:translate3d(0,0,0);}
   50%    {transform:translate3d(0,-2.3%,0);}
 }
-.contents_div .gbq-lyr-boy  img{animation:gbq-bob-s 3.4s ease-in-out  .96s infinite;}
-.contents_div .gbq-lyr-girl img{animation:gbq-bob-m 3.0s ease-in-out 1.24s infinite;}
-.contents_div .gbq-lyr-bird img{animation:gbq-bob-l 2.8s ease-in-out 1.7s infinite;}
+.contents_div .gbq-hero-art.gbq-in .gbq-lyr-boy  img{animation:gbq-bob-s 3.4s ease-in-out  .96s infinite;}
+.contents_div .gbq-hero-art.gbq-in .gbq-lyr-girl img{animation:gbq-bob-m 3.0s ease-in-out 1.24s infinite;}
+.contents_div .gbq-hero-art.gbq-in .gbq-lyr-bird img{animation:gbq-bob-l 2.8s ease-in-out 1.7s infinite;}
 
 @media (prefers-reduced-motion:reduce){
   .contents_div .gbq-hero-art .gbq-lyr,
 .contents_div .gbq-hero-art .gbq-lyr img{animation:none !important;}
+  .contents_div .gbq-hero-art .gbq-lyr{opacity:1 !important;}
 }
 
 /* ══════════ GUIDE ══════════ */
@@ -836,6 +842,9 @@
   .contents_div .gbq-checks li,
 .contents_div .gbq-before-box .gbq-checks li{font-size:var(--gbq-fs-b);}
   .contents_div .gbq-before-box .gbq-checks li{line-height:1.54;}
+  /* 시스템 폰트에서 ✓ 가 얇게 렌더링돼 획을 보강한다 */
+  .contents_div .gbq-checks li::before{-webkit-text-stroke:.6px currentColor;}
+  .contents_div .gbq-before-box .gbq-checks li::before{font-size:14px;-webkit-text-stroke:.7px currentColor;}
   .contents_div .gbq-detail-body .gbq-checks li{font-size:var(--gbq-fs-b);}
   .contents_div .gbq-spec dd{font-size:var(--gbq-fs-b);}
   .contents_div .gbq-linkbar a,
@@ -1408,6 +1417,24 @@
 
   var $ = function (sel) { return root.querySelector(sel); };
   var $$ = function (sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); };
+
+  /* ── 히어로 등장 : 임베드 페이지라 로드 직후가 아니라 화면에 들어올 때 재생 ── */
+  (function () {
+    var hero = root.querySelector('.gbq-hero-art');
+    if (!hero) return;
+    var noMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if (noMotion || !('IntersectionObserver' in window)) { hero.classList.add('gbq-in'); return; }
+
+    hero.classList.add('gbq-armed');   /* 재생 전까지 숨김 */
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        hero.classList.add('gbq-in');
+        io.disconnect();
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+    io.observe(hero);
+  })();
 
   var questions = $$('.gbq-q');
   var doneEl = $('#gbq-done');
