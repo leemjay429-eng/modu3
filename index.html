@@ -741,8 +741,9 @@
   .contents_div .gbq-lineup .gbq-solution{min-height:0;}
   .contents_div .gbq-next-card{display:none;}
   .contents_div .gbq-choices{grid-template-columns:1fr;}
-  .contents_div .gbq-photoq{grid-template-columns:1fr;}
-  .contents_div .gbq-photoq .gbq-imgslot{aspect-ratio:4/3;height:auto;min-height:0;}
+  .contents_div .gbq-photoq{grid-template-columns:1fr;align-items:start;}
+  /* 1열에서는 stretch가 걸리면 aspect-ratio가 무시돼 높이가 0이 된다 */
+  .contents_div .gbq-photoq .gbq-imgslot{aspect-ratio:4/3;height:auto;min-height:0;align-self:start;width:100%;}
   .contents_div .gbq-detail{grid-template-columns:1fr;gap:18px;}
   .contents_div .gbq-detail .gbq-imgslot{height:230px;}
   .contents_div .gbq-detail .gbq-flagfig{max-width:none;height:270px;}
