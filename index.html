@@ -303,7 +303,7 @@
 .contents_div .gbq-qtext{margin:0;font-size:17px;font-weight:600;line-height:1.6;letter-spacing:-.01em;word-break:keep-all;overflow-wrap:break-word;}
 .contents_div .gbq-stamp{
   display:none;font-family:var(--gbq-display);font-weight:700;font-size:12px;letter-spacing:.06em;
-  border-radius:999px;padding:3px 13px;
+  border-radius:999px;padding:3px 13px;white-space:nowrap;flex:none;
 }
 .contents_div .gbq-q.gbq-graded .gbq-stamp{display:inline-block;}
 .contents_div .gbq-q.gbq-correct .gbq-stamp{background:var(--gbq-red);color:#fff;}
@@ -315,9 +315,11 @@
 .contents_div .gbq-q.gbq-graded .gbq-solution{display:block;}
 .contents_div .gbq-solution b{font-family:var(--gbq-display);font-weight:700;color:var(--gbq-red);margin-right:7px;}
 .contents_div .gbq-q.gbq-graded button{pointer-events:none;}
+/* 답 확인 후 잠금 : disabled 기본 스타일이 색을 흐리지 않도록 */
+.contents_div .gbq-q.gbq-graded button:disabled{cursor:default;opacity:1;color:inherit;}
 
 /* ROUND 01 : O/X 라인업 그리드 */
-.contents_div .gbq-lineup{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.contents_div .gbq-lineup{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;}
 .contents_div .gbq-lineup .gbq-q{display:flex;flex-direction:column;}
 .contents_div .gbq-lineup .gbq-qtext{min-height:calc(17px * 1.6 * 2);}
 .contents_div .gbq-lineup .gbq-solution{
@@ -345,6 +347,8 @@
 /* ROUND 02 : 4지선다 */
 .contents_div .gbq-mcq-list{display:grid;gap:16px;}
 .contents_div .gbq-qhead{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.contents_div .gbq-qhead .gbq-qtext{flex:1;min-width:0;}
+.contents_div .gbq-qhead .gbq-stamp{flex:none;margin-left:auto;}
 .contents_div .gbq-qtag{
   flex:none;font-family:var(--gbq-display);font-weight:700;font-size:13px;letter-spacing:.06em;line-height:1.2;
   color:var(--gbq-blue-deep);background:var(--gbq-blue-soft);border-radius:999px;padding:4px 13px;
@@ -472,24 +476,6 @@
 .contents_div .gbq-tier.gbq-now .gbq-tier-res{color:var(--gbq-ink);}
 .contents_div .gbq-result-actions{margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
 
-/* ▼▼▼ 확인용 미리보기 바 : 배포 전 이 블록만 지우세요 ▼▼▼ */
-.contents_div .gbq-devbar{
-  position:sticky;bottom:8px;z-index:50;margin-top:26px;
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;
-  padding:9px 10px;border:2px dashed var(--gbq-red);border-radius:14px;
-  background:rgba(255,255,255,.95);
-}
-.contents_div .gbq-devbar b{
-  font-family:var(--gbq-body);font-weight:700;font-size:11.5px;
-  letter-spacing:.04em;color:var(--gbq-red);margin-right:2px;
-}
-.contents_div .gbq-devbar button{
-  border:2px solid var(--gbq-line-card);border-radius:999px;background:#fff;
-  padding:5px 11px;font-size:12.5px;font-weight:700;color:var(--gbq-ink);
-  cursor:pointer;line-height:1.2;
-}
-.contents_div .gbq-devbar button:hover{background:var(--gbq-yellow-soft);}
-/* ▲▲▲ 확인용 미리보기 바 끝 ▲▲▲ */
 
 /* ══════════ MORE : 게양법 ══════════ */
 .contents_div .gbq-detail{display:grid;grid-template-columns:285px 1fr;gap:20px;align-items:stretch;}
@@ -707,7 +693,7 @@
 }
 
 /* ══════════ 반응형 ══════════ */
-@media (max-width:600px){
+@media (max-width:700px){
   .contents_div .gbq-sec{padding:40px 15px;}
   .contents_div .gbq-shead{padding-bottom:11px;margin-bottom:24px;}
   .contents_div .gbq-before-box{padding:16px 24px;}
@@ -927,17 +913,17 @@
     </div>
 
     <ol class="gbq-steps">
-      <li><span class="gbq-num">01</span><b>15문제를 풀어요</b><p>라운드별로<span class="gbq-w-only"> O/X와 4지선다,<br>사진 </span><br class="gbq-m-br">문제가 이어집니다</p></li>
+      <li><span class="gbq-num">01</span><b>15문제를 풀어요</b><p>답을 고르면<span class="gbq-w-only"> 정답과 해설이<br>그 자리에서 </span><br class="gbq-m-br">바로 열립니다</p></li>
       <li><span class="gbq-num">02</span><b>채점하기를 눌러요</b><p>모든 문제를 풀면<br>채점 버튼이 켜집니다</p></li>
-      <li><span class="gbq-num">03</span><b>내 광복 점수 확인</b><p>문제별 해설과 등급을<br>한 번에 볼 수 있어요</p></li>
+      <li><span class="gbq-num">03</span><b>내 광복 점수 확인</b><p><span class="gbq-w-only">15문제 </span>총점과 등급을<br>마지막에 확인해요</p></li>
     </ol>
 
     <div class="gbq-before-box">
       <p class="gbq-bb-title">참여 전 체크</p>
       <ul class="gbq-checks">
         <li><span class="gbq-ck-t">퀴즈 결과는 저장되지 않아요. 화면을 새로 고치면 처음부터 다시 풀어야 합니다.</span></li>
+        <li><span class="gbq-ck-t">답을 고르면 정답과 해설을 바로 확인할 수 있어요.(정답 수정은 불가)</span></li>
         <li><span class="gbq-ck-t">모든 문제를 풀어야 채점 버튼이 활성화됩니다.</span></li>
-        <li><span class="gbq-ck-t">정답 해설은 채점 후 각 문제 아래에서 확인할 수 있어요.</span></li>
       </ul>
     </div>
   </section>
@@ -1293,16 +1279,6 @@
       </div>
     </div>
 
-    <!-- ▼▼▼ 확인용 미리보기 바 : 배포 전 이 블록만 지우세요 ▼▼▼ -->
-    <div class="gbq-devbar" aria-label="결과 미리보기">
-      <b>미리보기</b>
-      <button type="button" data-gbq-preview="3">레벨 0 (3점)</button>
-      <button type="button" data-gbq-preview="7">레벨 1 (7점)</button>
-      <button type="button" data-gbq-preview="11">레벨 2 (11점)</button>
-      <button type="button" data-gbq-preview="14">레벨 3 (14점)</button>
-      <button type="button" data-gbq-preview="off">닫기</button>
-    </div>
-    <!-- ▲▲▲ 확인용 미리보기 바 끝 ▲▲▲ -->
   </section>
 
   <!-- ═══════════════ 이모저모 ═══════════════ -->
@@ -1444,20 +1420,37 @@
   var TOTAL = questions.length;
   var picked = {};
 
-  /* ── 보기 선택 ── */
+  /* ── 보기 선택 : 고르는 즉시 정답 공개 + 해당 문항 잠금 ── */
   questions.forEach(function (q, i) {
     q.querySelectorAll('.gbq-ox button, .gbq-choices button').forEach(function (btn) {
       btn.addEventListener('click', function () {
+        if (q.classList.contains('gbq-graded')) return;   /* 이미 확인한 문항은 수정 불가 */
         btn.parentNode.querySelectorAll('button').forEach(function (b) {
           b.classList.remove('gbq-on');
         });
         btn.classList.add('gbq-on');
         picked[i] = btn.dataset.v;
         q.classList.add('gbq-answered');
+        revealOne(q, i);
         updateProgress();
       });
     });
   });
+
+  /* ── 문항 1개 즉시 채점 : 배지 · 해설 · 정답 표시 후 잠금 ── */
+  function revealOne(q, i) {
+    var answer = q.dataset.answer;
+    var ok = picked[i] === answer;
+    q.classList.add('gbq-graded', ok ? 'gbq-correct' : 'gbq-wrong');
+    var stamp = q.querySelector('.gbq-stamp');
+    if (stamp) stamp.textContent = ok ? '정답!' : '오답';
+    var target = q.querySelector('[data-v="' + answer + '"]');
+    if (target) target.classList.add('gbq-answer');
+    q.querySelectorAll('.gbq-ox button, .gbq-choices button').forEach(function (b) {
+      b.disabled = true;
+      b.setAttribute('aria-disabled', 'true');
+    });
+  }
 
   function updateProgress() {
     var n = Object.keys(picked).length;
@@ -1467,18 +1460,12 @@
     gradeBtn.textContent = n < TOTAL ? '채점하기 (' + (TOTAL - n) + '문제 남음)' : '채점하기';
   }
 
-  /* ── 채점 ── */
+  /* ── 채점 : 문항별로 이미 공개된 결과를 합산 ── */
   function grade() {
     var score = 0;
     questions.forEach(function (q, i) {
-      var answer = q.dataset.answer;
-      var ok = picked[i] === answer;
-      if (ok) score++;
-      q.classList.add('gbq-graded', ok ? 'gbq-correct' : 'gbq-wrong');
-      var stamp = q.querySelector('.gbq-stamp');
-      if (stamp) stamp.textContent = ok ? '정답!' : '오답';
-      var target = q.querySelector('[data-v="' + answer + '"]');
-      if (target) target.classList.add('gbq-answer');
+      if (!q.classList.contains('gbq-graded')) revealOne(q, i);   /* 안전장치 */
+      if (picked[i] === q.dataset.answer) score++;
     });
     showResult(score);
   }
@@ -1521,15 +1508,6 @@
 
   if (gradeBtn) gradeBtn.addEventListener('click', grade);
 
-  /* ▼▼▼ 확인용 미리보기 바 : 배포 전 이 블록만 지우세요 ▼▼▼ */
-  $$('.gbq-devbar button').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var v = b.dataset.gbqPreview;
-      if (v === 'off') { if (result) result.classList.remove('gbq-show'); return; }
-      showResult(Number(v), true);
-    });
-  });
-  /* ▲▲▲ 확인용 미리보기 바 끝 ▲▲▲ */
 
   var retryBtn = $('#gbq-retry');
   if (retryBtn) retryBtn.addEventListener('click', function () {
@@ -1538,6 +1516,8 @@
       q.classList.remove('gbq-graded', 'gbq-correct', 'gbq-wrong', 'gbq-answered');
       q.querySelectorAll('button').forEach(function (b) {
         b.classList.remove('gbq-on', 'gbq-answer');
+        b.disabled = false;
+        b.removeAttribute('aria-disabled');
       });
       var stamp = q.querySelector('.gbq-stamp');
       if (stamp) stamp.textContent = '정답';
