@@ -150,10 +150,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 }
 </script>
 
-<!-- TEST: 확인 후 이 줄 삭제 -->
- <div class="jngj-test-spacer" aria-hidden="true" style="height:900px;max-width:800px;margin:auto;display:grid;place-items:center;border:1px solid #cb9;background:linear-gradient(to top right,#0000 calc(50% - 1px),#cb9,#0000 calc(50% + 1px)),linear-gradient(to top left,#0000 calc(50% - 1px),#cb9,#0000 calc(50% + 1px)) #fffdef;font:700 16px sans-serif;color:#7E5E50"><b style="padding:10px 20px;background:#fffdef;border:1px solid #cb9;border-radius:99px">
-  테스트 영역 · 아래로 스크롤 ↓</b></div>
-<!-- TEST: 확인 후 이 줄 삭제  -->
+<!-- TEST: 확인 후 이 줄 삭제 --><div class="jngj-test-spacer" aria-hidden="true" style="height:900px;max-width:800px;margin:auto;display:grid;place-items:center;border:1px solid #cb9;background:linear-gradient(to top right,#0000 calc(50% - 1px),#cb9,#0000 calc(50% + 1px)),linear-gradient(to top left,#0000 calc(50% - 1px),#cb9,#0000 calc(50% + 1px)) #fffdef;font:700 16px sans-serif;color:#7E5E50"><b style="padding:10px 20px;background:#fffdef;border:1px solid #cb9;border-radius:99px">테스트 영역 · 아래로 스크롤 ↓</b></div>
 
 <div class="contents_div">
 <style>
@@ -313,19 +310,19 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
    각 칸 : 골드 순번 + 이름 + 흰색 단색 아이콘 — 모든 폭 같은 구성 */
 .contents_div .bnf-toc{
   /* 세로 : 타이틀 하단(히어로 높이 59.2%) ~ 히어로 바닥 사이 정중앙 → 내비 위·아래 여백 동일 */
-  position:absolute;left:50%;top:calc(79.6% - 24px);z-index:2;   /* 정중앙에서 24px 위 */
+  position:absolute;left:50%;top:calc(79.6% - 3cqw);z-index:2;   /* 정중앙에서 위로 (800에서 24px) */
   width:64%;transform:translate(-50%,-50%);   /* 800px 웹 디자인을 그대로 비율 축소 (1cqw = 800px 기준 8px) */
 }
 .contents_div .bnf-toc ul{
   display:grid;grid-template-columns:repeat(2,1fr);gap:0;overflow:hidden;
-  border:max(1.5px, .25cqw) solid #C49A86;border-radius:2.5cqw;   /* 히어로 브라운(#8C5740)보다 연한 브라운 */
+  border:.25cqw solid #C49A86;border-radius:2.5cqw;   /* 히어로 브라운(#8C5740)보다 연한 브라운 */
   background:#fff;
-  box-shadow:0 8px 22px rgba(50,22,10,.22);
+  box-shadow:0 1cqw 2.75cqw rgba(50,22,10,.22);
 }
 .contents_div .bnf-toc li{position:relative}
 /* 가운데 구분선 */
 .contents_div .bnf-toc li + li::before{
-  content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:var(--bnf-blue-line);
+  content:"";position:absolute;left:0;top:22%;bottom:22%;width:.125cqw;background:var(--bnf-blue-line);
 }
 .contents_div .bnf-toc button{
   position:relative;
@@ -334,7 +331,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   -webkit-appearance:none;appearance:none;font-family:var(--bnf-head);text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;
   padding:3.25cqw 2.25cqw;
   border:0;border-radius:0;background:transparent;
-  font-size:max(10px, 2.625cqw);   /* 800에서 21px · 최소 10px */font-weight:700;letter-spacing:-.03em;line-height:1;white-space:nowrap;
+  font-size:2.625cqw;   /* 800에서 21px */font-weight:700;letter-spacing:-.03em;line-height:1;white-space:nowrap;
   color:var(--bnf-blue-deep);
   transition:background-color .18s ease;
 }
@@ -343,7 +340,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .bnf-toc .bnf-toc__num{
   flex:none;display:block;
   color:#E5A92E;
-  font-family:var(--bnf-sans);font-size:max(10px, 2.875cqw);font-weight:800;letter-spacing:.02em;line-height:1;
+  font-family:var(--bnf-sans);font-size:2.875cqw;font-weight:800;letter-spacing:.02em;line-height:1;
 }
 /* 아이콘 : 이름 옆 흰색 단색 라인 (CSS data URI, CMS 인라인 svg 불가) */
 .contents_div .bnf-toc .bnf-toc__ico{
@@ -738,9 +735,9 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .bnf-card dd ul.bnf-numl > li::before{
   content:counter(bnfn);flex:0 0 auto;
   display:flex;align-items:center;justify-content:center;
-  width:16px;height:16px;margin-top:.22em;border-radius:50%;
+  width:15.2px;height:15.2px;margin-top:.25em;border-radius:50%;   /* 모바일 : 웹 16px의 95% */
   background:var(--bnf-theme);background-image:none;color:#fff;
-  font-size:10px;font-weight:700;line-height:1;letter-spacing:0;
+  font-size:9.5px;font-weight:700;line-height:1;letter-spacing:0;
 }
 .contents_div .bnf-nw{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
 .contents_div .bnf-card dd .bnf-sub{margin-top:2px}
@@ -849,6 +846,8 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 
 /* ── 웹(≥600px) : 상한 800px, 좌우 여백 6.25%(800에서 50px) ── */
 @container bnfroot (min-width:600px){
+
+  .contents_div .bnf-card dd ul.bnf-numl > li::before{width:16px;height:16px;margin-top:.22em;font-size:10px}   /* 웹 : 넘버 원 원래 크기 */
 
   .contents_div .bnf-page{
     /* 바탕 : 히어로 브라운을 옅게 낮춘 단색 */
