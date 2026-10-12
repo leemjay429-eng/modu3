@@ -379,7 +379,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   --st0:.6s;     /* '기간 한정 꿀혜택' 첫 글자 시작 */
   --stg:.09s;    /* 글자 간격 */
   --std:.5s;     /* 글자 하나 찍히는 시간 */
-  --navd:.6s;    /* 내비 등장 시간 */
+  --navd:.9s;    /* 내비 등장 시간 (끝점 고정, 시작을 앞당겨 느슨하게) */
   --stend:calc(var(--st0) + var(--stg) * 6 + var(--std));   /* 7번째 글자 끝 = 내비 끝 */
 }
 .contents_div .bnf-hm__ly{position:absolute;inset:0;transform-origin:var(--o,50% 50%)}
@@ -450,7 +450,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div.is-bnf-hm-play .bnf-hm__ping i{animation:bnfHmPing 3s cubic-bezier(.2,.6,.3,1) calc(var(--hit) + .5s) infinite}
 
 /* 내비 : '기간 한정 꿀혜택' 마지막 글자와 같은 순간에 완전히 나타나도록 거꾸로 계산 */
-.contents_div.is-bnf-hm-play .bnf-toc{opacity:1;animation:bnfHmNav var(--navd,.6s) cubic-bezier(.22,.68,.36,1) calc(var(--stend,1.64s) - var(--navd,.6s)) both}
+.contents_div.is-bnf-hm-play .bnf-toc{opacity:1;animation:bnfHmNav var(--navd,.9s) cubic-bezier(.33,.8,.4,1) calc(var(--stend,1.64s) - var(--navd,.9s)) both}
 /* 히어로가 화면 밖이면 반복 모션 정지 */
 .contents_div.is-bnf-hm-off .bnf-hm,
 .contents_div.is-bnf-hm-off .bnf-hm *{animation-play-state:paused}
