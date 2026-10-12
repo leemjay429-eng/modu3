@@ -311,27 +311,27 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .bnf-toc{
   /* 세로 : 타이틀 하단(히어로 높이 59.2%) ~ 히어로 바닥 사이 정중앙 → 내비 위·아래 여백 동일 */
   position:absolute;left:50%;top:calc(79.6% - 3cqw);z-index:2;   /* 정중앙에서 위로 (800에서 24px) */
-  width:64%;transform:translate(-50%,-50%);   /* 800px 웹 디자인을 그대로 비율 축소 (1cqw = 800px 기준 8px) */
+  --u:1cqw;width:calc(64 * var(--u));transform:translate(-50%,-50%);   /* 800px 웹 디자인을 그대로 비율 축소 (--u = 1cqw, 800px 기준 8px) */
 }
 .contents_div .bnf-toc ul{
   display:grid;grid-template-columns:repeat(2,1fr);gap:0;overflow:hidden;
-  border:.25cqw solid #C49A86;border-radius:2.5cqw;   /* 히어로 브라운(#8C5740)보다 연한 브라운 */
+  border:calc(.25 * var(--u)) solid #C49A86;border-radius:calc(2.5 * var(--u));   /* 히어로 브라운(#8C5740)보다 연한 브라운 */
   background:#fff;
-  box-shadow:0 1cqw 2.75cqw rgba(50,22,10,.22);
+  box-shadow:0 calc(1 * var(--u)) calc(2.75 * var(--u)) rgba(50,22,10,.22);
 }
 .contents_div .bnf-toc li{position:relative}
 /* 가운데 구분선 */
 .contents_div .bnf-toc li + li::before{
-  content:"";position:absolute;left:0;top:22%;bottom:22%;width:.125cqw;background:var(--bnf-blue-line);
+  content:"";position:absolute;left:0;top:22%;bottom:22%;width:calc(.125 * var(--u));background:var(--bnf-blue-line);
 }
 .contents_div .bnf-toc button{
   position:relative;
-  display:flex;align-items:center;justify-content:center;gap:1.75cqw;
+  display:flex;align-items:center;justify-content:center;gap:calc(1.75 * var(--u));
   width:100%;height:100%;margin:0;cursor:pointer;text-align:left;
   -webkit-appearance:none;appearance:none;font-family:var(--bnf-head);text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;
-  padding:3.25cqw 2.25cqw;
+  padding:calc(3.25 * var(--u)) calc(2.25 * var(--u));
   border:0;border-radius:0;background:transparent;
-  font-size:2.625cqw;   /* 800에서 21px */font-weight:700;letter-spacing:-.03em;line-height:1;white-space:nowrap;
+  font-size:calc(2.625 * var(--u));   /* 800에서 21px */font-weight:700;letter-spacing:-.03em;line-height:1;white-space:nowrap;
   color:var(--bnf-blue-deep);
   transition:background-color .18s ease;
 }
@@ -340,15 +340,15 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .bnf-toc .bnf-toc__num{
   flex:none;display:block;
   color:#E5A92E;
-  font-family:var(--bnf-sans);font-size:2.875cqw;font-weight:800;letter-spacing:.02em;line-height:1;
+  font-family:var(--bnf-sans);font-size:calc(2.875 * var(--u));font-weight:800;letter-spacing:.02em;line-height:1;
 }
 /* 아이콘 : 이름 옆 흰색 단색 라인 (CSS data URI, CMS 인라인 svg 불가) */
 .contents_div .bnf-toc .bnf-toc__ico{
-  flex:none;display:block;width:3.5cqw;height:3.5cqw;
+  flex:none;display:block;width:calc(3.5 * var(--u));height:calc(3.5 * var(--u));
   background:no-repeat center / contain;
 }
 /* 확성기 : 달력보다 4px 크게, 왼쪽으로 4도 회전, 위로 1px (선 굵기는 2.8로 낮춰 달력과 화면상 두께 통일) */
-.contents_div .bnf-toc .bnf-toc__ico.bnf-toc__ico--mega{width:4cqw;height:4cqw;transform:translateY(-.125cqw) rotate(-4deg)}
+.contents_div .bnf-toc .bnf-toc__ico.bnf-toc__ico--mega{width:calc(4 * var(--u));height:calc(4 * var(--u));transform:translateY(calc(-.125 * var(--u))) rotate(-4deg)}
 .contents_div .bnf-toc .bnf-toc__ico--mega{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%236B3E2B' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 30.2l2.1 7.3q.5 1.8 2.4 1.8h1.1q2 0 1.5-2L20.6 30'/%3E%3Cpath d='M8 19.5h7l14.3-8q2.7-1.5 2.7 1.6v21.8q0 3.1-2.7 1.6l-14.3-8H8q-3 0-3-3v-3q0-3 3-3z'/%3E%3Cpath d='M37.5 19.5c2 2.6 2 6.4 0 9'/%3E%3Cpath d='M41.5 15.5c4 5 4 12 0 17'/%3E%3C/svg%3E")}
 .contents_div .bnf-toc .bnf-toc__ico--cal{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%236B3E2B' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='6' y='10' width='36' height='32' rx='6'/%3E%3Cpath d='M6 19h36'/%3E%3Cpath d='M16 5v9M32 5v9'/%3E%3C/svg%3E")}
 
@@ -854,6 +854,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .bnf-lp{display:block;height:.7em}
 }
 @media (max-width:450px){   /* 뷰포트(패딩 포함) 450 이하 줄바꿈 고정 */
+  .contents_div .bnf-toc{--u:1.1cqw}   /* 450 이하 : 내비 10% 크게 */
   .contents_div .bnf-brv450{display:inline}
 }
 @media (max-width:350px){   /* 13개 시군 목록 : 좁은 화면에서도 7·6 두 줄 유지 */
@@ -1011,6 +1012,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .bnf-card dd ul li{
     gap:5px;font-size:.93em;letter-spacing:-.065em;
   }
+  .contents_div #bnf-b4 dd ul li{font-size:1em;letter-spacing:-.02em}   /* 생태탐험 카드 : 목록도 다른 항목과 같은 크기 */
   .contents_div .bnf-card dd ul:not(.bnf-numl):not(.bnf-dot) li::before{width:12px;height:12px;margin-top:.35em}
 }
 
@@ -1176,7 +1178,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       <div class="bnf-card__body">
         <div class="bnf-card__meta"><span class="bnf-chip">일반시민</span><span class="bnf-dday" data-end="2026-10-18">10. 18.(일)까지</span></div>
         <h2>특별시민이 <span class="bnf-nw bnf-blk420">추천하고 싶은</span><strong class="bnf-blk">올해의 책은?</strong></h2>
-        <p class="bnf-lede">2027년 전남광주 올해의 책 선정을 위해 <b class="bnf-hl">후보도서 시민 추천</b>을 받습니다. 추천 분야는 어린이, 청소년, 일반 문학, 일반 비문학 등 4개 분야인데요. 전남광주통합특별시민이면 누구나 분야별 2권 이내, 1인 최대 8권까지 추천할 수 있어요.</p>
+        <p class="bnf-lede">2027년 전남광주 올해의 책 선정을 위해 <b class="bnf-hl">후보도서 시민 추천</b>을 받습니다. 추천 분야는 어린이, 청소년, 일반 문학, 일반 비문학 등 4개 분야인데요. 전남광주<wbr>통합특별시민이면 누구나 분야별 2권 이내, 1인 최대 8권까지 추천할 수 있어요.</p>
         <p class="bnf-lede">추천받은 도서는 전남·광주의 도서관, 문학, 독서, 교육 분야 전문가 등으로 구성된 도서선정위원회 심사를 거쳐 20권의 후보도서로 압축될 예정인데요. 이후 시민 선호도 조사와 도서선정위원회 심사 결과를 합산해 올해의 책으로 최종 선정합니다.</p>
       </div>
     </div>
