@@ -745,10 +745,9 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 }
 .contents_div .bnf-nw{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
 .contents_div .bnf-card dd .bnf-sub{margin-top:2px}
-/* 접수처 : 모바일은 지역명 옆 2단(팩스 / 이메일 들여쓰기), 웹은 한 줄에 '|'로 구분 */
-.contents_div .bnf-card dd .bnf-sub .bnf-liln{display:grid;grid-template-columns:auto 1fr;column-gap:.3em}
-.contents_div .bnf-card dd .bnf-sub .bnf-liln > em{grid-row:span 2}
-.contents_div .bnf-card dd .bnf-sub .bnf-liln > *:not(em){grid-column:2}
+/* 접수처 : 모바일은 '지역 팩스' 다음 줄에 이메일(들여쓰기 없음), 웹은 한 줄에 '|'로 구분 */
+.contents_div .bnf-card dd .bnf-sub .bnf-liln{display:block}
+.contents_div .bnf-card dd .bnf-sub .bnf-mail{display:block}
 
 .contents_div .bnf-tel{
   font-weight:700;color:var(--bnf-ink);white-space:nowrap;
@@ -955,6 +954,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .bnf-card dd ul.bnf-cols2{display:grid;grid-auto-flow:column;grid-template-rows:repeat(3,auto);grid-auto-columns:max-content;column-gap:36px;row-gap:4px}
   .contents_div .bnf-card dd ul.bnf-cols2 li + li{margin-top:0}
   .contents_div .bnf-card dd .bnf-sub .bnf-liln{display:inline}
+  .contents_div .bnf-card dd .bnf-sub .bnf-mail{display:inline}
   .contents_div .bnf-card dd .bnf-sub .bnf-mail::before{content:"|";margin:0 .55em 0 .25em;color:#CDB5A8;font-weight:400}
   .contents_div .bnf-note{margin-top:7px;line-height:1.65}
   .contents_div .bnf-card .bnf-note.bnf-blue-txt{margin-top:3px}
