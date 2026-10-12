@@ -211,10 +211,10 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   --bnf-cyan-nav-bg:#FAF0EA;
   --bnf-cyan-hl:#F3DCCD;
 
-  --bnf-violet:#8A5F00;        /* 글자용 딥 골드 (밝은 바탕 대비 4.5 이상) */
+  --bnf-violet:#805700;        /* 글자용 딥 골드 (밝은 바탕 대비 4.5 이상) */
   --bnf-violet-accent:#EDB43A; /* 체크·장식용 골드 */
-  --bnf-violet-soft:#FFF6DF;
-  --bnf-violet-line:#F7DFA6;
+  --bnf-violet-soft:#FAEBC4;   /* 노란 배지·포인트 바탕 (진하게) */
+  --bnf-violet-line:#F1DAA2;   /* 포인트 박스 테두리 : 바탕보다 한 톤 진하게 */
   --bnf-violet-hl:#FCE19A;
 
   /* 내비 hover */
@@ -569,6 +569,10 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .bnf-poster.is-empty img{position:absolute;inset:0;width:100%;height:100%;max-height:none;opacity:0}
 .contents_div .bnf-poster.is-empty .bnf-poster__hint{display:none}
 .contents_div .bnf-poster.is-empty .bnf-poster__btn{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;cursor:default}
+/* 로딩 중 (스크립트가 is-wait 부여) : 포스터 비율 프레임을 미리 잡고 '크게 보기'는 바로 보여 준다 */
+.contents_div .bnf-poster.is-wait{aspect-ratio:1 / 1.414;width:clamp(83px, calc(100% - 218px), 108px)}
+.contents_div .bnf-poster.is-wait img{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover}
+.contents_div .bnf-poster.is-wait .bnf-poster__btn{position:absolute;inset:0;width:100%;height:100%}
 
 .contents_div .bnf-poster::after{
   content:"포스터";
@@ -824,7 +828,23 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   @media (min-width:640px){ .contents_div .bnf-blkmo{display:inline} }
 }
 @media (max-width:420px){   /* 뷰포트 420 이하에서 다음 줄로 */
+  .contents_div .bnf-card h2{font-size:calc(clamp(16px, calc(1.6px + 5cqw), 22px) + 4px);position:relative;top:1px}   /* 420 이하 : 카드 제목 2px 더 크게 · 1px 아래로 */
+  .contents_div .bnf-icon{   /* 420 이하 : 자동차 아이콘 15px 아래로 · 5% 크게 (제목이 커진 만큼 폭 보정 후 ×1.05) */
+    margin-top:calc(var(--bnf-meta-off) + 15px);
+    shape-outside:inset(calc(var(--bnf-meta-off) + 15px) 0 0 0) margin-box;
+    width:calc(min(130px, calc(100cqw - var(--bnf-gut) * 2 - (clamp(16px, calc(1.6px + 5cqw), 22px) + 4px) * 9.4 - 16px)) * 1.05);
+  }
   .contents_div .bnf-blk420{display:block}
+}
+@media (max-width:374px){   /* 374 이하 : 배지가 화면 폭에 맞춰 조금씩 작아짐 (375에서 12px → 최소 10px) */
+  .contents_div .bnf-chip,
+  .contents_div .bnf-dday{font-size:max(10px, 3.2vw);padding:1.333vw 2.667vw;border-radius:1.6vw}
+  .contents_div .bnf-card__meta > * + *{margin-left:1.867vw}
+  .contents_div .bnf-icon{--bnf-meta-off:calc(max(10px, 3.2vw) * 1.62 + 2.667vw + 12px)}
+}
+@media (min-width:350px) and (max-width:374px){   /* 350~374 : 카드 제목 2px 작게 (420 이하 +2px 상쇄) */
+  .contents_div .bnf-card h2{font-size:calc(clamp(16px, calc(1.6px + 5cqw), 22px) + 2px)}
+  .contents_div .bnf-icon{width:calc(min(130px, calc(100cqw - var(--bnf-gut) * 2 - (clamp(16px, calc(1.6px + 5cqw), 22px) + 2px) * 9.4 - 16px)) * 1.05)}
 }
 /* 웹 전용 줄바꿈 : 기본은 공백 한 칸, 웹(≥600)에서만 줄바꿈 */
 .contents_div .bnf-brw::before{content:' '}
@@ -900,7 +920,8 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
     float:right;width:var(--bnf-poster-w);max-width:none;
     margin:0 0 20px 28px;border-radius:14px;
   }
-  .contents_div .bnf-poster.is-empty{width:var(--bnf-poster-w)}
+  .contents_div .bnf-poster.is-empty,
+  .contents_div .bnf-poster.is-wait{width:var(--bnf-poster-w)}
   .contents_div .bnf-icon{margin:0 0 20px 28px;shape-outside:none;height:var(--bnf-icon-h);width:auto;--bnf-icon-h:calc(clamp(76px, 24cqw, 150px) * .855)}   /* 웹 : 5% 축소 후 10% 추가 축소 */
   .contents_div .bnf-icon img{width:auto;height:100%}
   .contents_div .bnf-icon.is-empty{aspect-ratio:auto;width:var(--bnf-icon-h)}
@@ -1148,7 +1169,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       <figure class="bnf-poster">
         <button type="button" class="bnf-poster__btn" aria-label="2027 전남광주 올해의 책 시민 추천 포스터 크게 보기">
           <img src="img/올해의책.webp"
-               alt="2027 전남광주 올해의 책 후보도서 시민 추천 포스터" loading="lazy" decoding="async">
+               alt="2027 전남광주 올해의 책 후보도서 시민 추천 포스터" loading="eager" decoding="async">
           <span class="bnf-poster__hint">크게 보기</span>
         </button>
       </figure>
@@ -1181,7 +1202,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       <figure class="bnf-poster">
         <button type="button" class="bnf-poster__btn" aria-label="제31회 남도음식문화큰잔치 포스터 크게 보기">
           <img src="img/남도음식문화큰잔치.webp"
-               alt="제31회 남도음식문화큰잔치 포스터" loading="lazy" decoding="async">
+               alt="제31회 남도음식문화큰잔치 포스터" loading="eager" decoding="async">
           <span class="bnf-poster__hint">크게 보기</span>
         </button>
       </figure>
@@ -1205,7 +1226,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       <figure class="bnf-poster">
         <button type="button" class="bnf-poster__btn" aria-label="광주수목원 가을 숲 생태탐험 포스터 크게 보기">
           <img src="img/생태탐험.webp"
-               alt="광주수목원 가을 숲, 생태탐험 포스터" loading="lazy" decoding="async">
+               alt="광주수목원 가을 숲, 생태탐험 포스터" loading="eager" decoding="async">
           <span class="bnf-poster__hint">크게 보기</span>
         </button>
       </figure>
@@ -1290,13 +1311,45 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
     if(d > 0){ el.textContent = (el.dataset.label || '접수 시작') + ' D-' + d; }
   });
 
-  /* 포스터 이미지가 없거나 깨지면 빈 프레임으로 */
+  /* 아이콘 카드(모바일) : 아이콘 바닥을 h2 바닥에 맞춘다
+     제목 크기·줄 수·아이콘 비율이 바뀌어도 실측으로 맞추므로 손댈 것 없음. 웹(≥600)은 CSS 그대로 */
+  var alignIcons = function(){
+    var mobile = root.clientWidth < 600;
+    root.querySelectorAll('.bnf-card').forEach(function(card){
+      var ic = card.querySelector('.bnf-icon:not(.bnf-icon--off)');
+      var h2 = card.querySelector('h2');
+      var head = card.querySelector('.bnf-card__head');
+      if(!ic || !h2 || !head) return;
+      ic.style.marginTop = ''; ic.style.shapeOutside = '';
+      if(!mobile) return;
+      var base = parseFloat(getComputedStyle(ic).marginTop) || 0;   /* 칩 줄 아래 최소 위치 */
+      for(var k = 0; k < 3; k++){   /* 아이콘 위치가 제목 줄바꿈에 영향 → 안정될 때까지 */
+        var top = head.getBoundingClientRect().top;
+        var mt = Math.max(base, h2.getBoundingClientRect().bottom - top - ic.getBoundingClientRect().height);
+        var px = mt.toFixed(2) + 'px';
+        if(ic.style.marginTop === px) break;
+        ic.style.marginTop = px;
+        ic.style.shapeOutside = 'inset(' + px + ' 0 0 0) margin-box';
+      }
+    });
+  };
+  alignIcons();
+  root.querySelectorAll('.bnf-icon img').forEach(function(im){ im.addEventListener('load', alignIcons); });
+  window.addEventListener('load', alignIcons);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(alignIcons)['catch'](function(){}); }
+  var alignT;
+  window.addEventListener('resize', function(){ clearTimeout(alignT); alignT = setTimeout(alignIcons, 150); });
+
+  /* 포스터 : 로딩 중엔 프레임 + '크게 보기' 바로 노출(is-wait), 없거나 깨지면 빈 프레임(is-empty) */
   root.querySelectorAll('.bnf-poster img, .bnf-icon img').forEach(function(img){
     var fig = img.closest('.bnf-poster, .bnf-icon');
     var btn = fig.querySelector('.bnf-poster__btn');
-    var mark = function(){ fig.classList.add('is-empty'); if(btn) btn.setAttribute('tabindex','-1'); };
-    var unmark = function(){ fig.classList.remove('is-empty'); if(btn) btn.removeAttribute('tabindex'); };
-    if(!(img.complete && img.naturalWidth)) mark();
+    var isPoster = fig.classList.contains('bnf-poster');
+    var mark = function(){ fig.classList.remove('is-wait'); fig.classList.add('is-empty'); if(btn) btn.setAttribute('tabindex','-1'); };
+    var unmark = function(){ fig.classList.remove('is-wait','is-empty'); if(btn) btn.removeAttribute('tabindex'); };
+    if(img.complete){ if(img.naturalWidth) unmark(); else mark(); }
+    else if(isPoster){ fig.classList.add('is-wait'); }
+    else { mark(); }
     img.addEventListener('error', mark);
     img.addEventListener('load', function(){ if(img.naturalWidth) unmark(); else mark(); });
   });
