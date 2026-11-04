@@ -467,7 +467,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
     --card-py:22px; --card-px:17px;
     --kick:22px; --lb-h:17px; --lb-px:7px;
     --img-ratio:75%;
-    --tk-h:41px; --fs-tk:12px; --tk-stub:32px; --tk-gap:8px;
+    --tk-h:45px; --fs-tk:11px; --tk-stub:32px; --tk-gap:8px;
     --nav-h:48px;
     --type-h:36px; --fs-type-h3:clamp(14.5px, calc(14.5px + (100vw - 375px) * 0.0286), 15.5px); --type-chk:18px;
     --fs-shop-sub:var(--fs-info);
@@ -476,6 +476,9 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   }
   .contents_div .kgf-tick-row{ padding:3px 0 8px; }
   .contents_div .kgf-tk{ border-radius:7px; }
+  .contents_div .kgf-tk{ flex-shrink:0; }
+  .contents_div .kgf-tk-name{ flex-shrink:0; white-space:nowrap; font-weight:700; padding:0 1.3em 0 1em; }
+  .contents_div .kgf-h3{ white-space:nowrap; }
   .contents_div .kgf-nav li + li::before{ height:10px; margin-top:-5px; }
   .contents_div .kgf-head{ gap:10px; margin-bottom:20px; }
   .contents_div .kgf-kicker{ padding:0 10px; border-radius:5px; line-height:1; }
@@ -559,11 +562,14 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
     background-size:159.12% auto;
   }
 }
+@media (max-width:360px){
+  .contents_div .kgf-h3{ letter-spacing:-0.04em; }
+}
 @media (max-width:420px){
   .contents_div .kgf-wrap{
     --band:40px;
     --card-py:19px; --card-px:14px;
-    --tk-h:34px; --fs-tk:11px; --tk-stub:27px; --tk-gap:6px;
+    --tk-h:37px; --fs-tk:10px; --tk-stub:27px; --tk-gap:6px;
   }
   .contents_div .kgf-tick-row{ padding:2px 0 6px; }
   .contents_div .kgf-tk{ border-radius:6px; }
@@ -722,7 +728,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
         </ol>
       </div>
       <div class="kgf-type kgf-c5">
-        <div class="kgf-type-head"><span class="kgf-chk" aria-hidden="true"></span><h3 class="kgf-h3">전통시장에서 자주<span class="kgf-br kgf-br--m420"></span> 장을 본다면 <span class="kgf-emo" aria-hidden="true">🛒</span></h3></div>
+        <div class="kgf-type-head"><span class="kgf-chk" aria-hidden="true"></span><h3 class="kgf-h3">전통시장에서 자주 장을 본다면 <span class="kgf-emo" aria-hidden="true">🛒</span></h3></div>
         <ul class="kgf-bul">
           <li>온누리상품권 <strong class="kgf-em">10% 할인</strong> (~<time datetime="2026-11-06">11/6</time>)</li>
           <li>상생소비복권 응모 (~<time datetime="2026-11-15">11/15</time>)</li>
@@ -805,6 +811,15 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   if(!wrap) return;
 
   var motion = wrap.classList.contains('kgf-js');
+
+  /* 웹폰트 로드 후 티커 다시 그리기 (모바일에서 쿠폰 글자 잘림 방지) */
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){
+      Array.prototype.forEach.call(wrap.querySelectorAll('.kgf-tick-track'), function(t){
+        t.style.animation = 'none'; void t.offsetWidth; t.style.animation = '';
+      });
+    });
+  }
 
   /* 히어로: 25% 이상 화면에 들어오면 타이틀 진입(1회) + 티커 흐름, 벗어나면 티커만 멈춤 */
   var hero = wrap.querySelector('.kgf-hero');
