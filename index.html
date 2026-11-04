@@ -467,17 +467,18 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
     --card-py:22px; --card-px:17px;
     --kick:22px; --lb-h:17px; --lb-px:7px;
     --img-ratio:75%;
-    --tk-h:45px; --fs-tk:11px; --tk-stub:32px; --tk-gap:8px;
+    --tk-h:45px; --fs-tk:11.8px; --tk-stub:34.6px; --tk-gap:8.3px;
     --nav-h:48px;
     --type-h:36px; --fs-type-h3:clamp(14.5px, calc(14.5px + (100vw - 375px) * 0.0286), 15.5px); --type-chk:18px;
     --fs-shop-sub:var(--fs-info);
     --cta-dot:34px; --foot-gap:28px; --foot-pad:20px;
     --fs-hot-lb:13px; --fs-hot-val:16px; --hot-ic:24px;
   }
-  .contents_div .kgf-tick-row{ padding:3px 0 8px; }
-  .contents_div .kgf-tk{ border-radius:7px; }
-  .contents_div .kgf-tk{ flex-shrink:0; }
-  .contents_div .kgf-tk-name{ flex-shrink:0; white-space:nowrap; font-weight:700; padding:0 1.3em 0 1em; }
+  .contents_div .kgf-tick-row{ padding:2.8px 0 8.3px; }
+  .contents_div .kgf-tk{ border-radius:6.9px; }
+  .contents_div .kgf-tk--tag{ border-radius:4.2px 11px 11px 4.2px; }
+  /* 사파리 쿠폰 잘림 방지 : 번호칸 폭을 width로 고정 */
+  .contents_div .kgf-tk-no{ width:var(--tk-stub); }
   .contents_div .kgf-h3{ white-space:nowrap; }
   .contents_div .kgf-nav li + li::before{ height:10px; margin-top:-5px; }
   .contents_div .kgf-head{ gap:10px; margin-bottom:20px; }
@@ -569,10 +570,11 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .kgf-wrap{
     --band:40px;
     --card-py:19px; --card-px:14px;
-    --tk-h:37px; --fs-tk:10px; --tk-stub:27px; --tk-gap:6px;
+    --tk-h:37px; --fs-tk:9.7px; --tk-stub:28.5px; --tk-gap:6.8px;
   }
-  .contents_div .kgf-tick-row{ padding:2px 0 6px; }
-  .contents_div .kgf-tk{ border-radius:6px; }
+  .contents_div .kgf-tick-row{ padding:2.3px 0 6.8px; }
+  .contents_div .kgf-tk{ border-radius:5.7px; }
+  .contents_div .kgf-tk--tag{ border-radius:3.4px 9px 9px 3.4px; }
   .contents_div .kgf-br--mo-wide{ display:none; }
   .contents_div .kgf-br--m420{ display:inline; }
 }
@@ -812,14 +814,33 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 
   var motion = wrap.classList.contains('kgf-js');
 
-  /* 웹폰트 로드 후 티커 다시 그리기 (모바일에서 쿠폰 글자 잘림 방지) */
-  if(document.fonts && document.fonts.ready){
-    document.fonts.ready.then(function(){
-      Array.prototype.forEach.call(wrap.querySelectorAll('.kgf-tick-track'), function(t){
-        t.style.animation = 'none'; void t.offsetWidth; t.style.animation = '';
-      });
+  /* 모바일 티커 쿠폰 폭 고정 (사파리 글자 잘림 방지)
+     사파리는 웹폰트가 늦게 들어오면 기울어진 쿠폰의 폭을 다시 계산하지 않음
+     → 화면 밖 복제본으로 실제 글자 폭을 재서 쿠폰에 직접 지정 (모바일만) */
+  var tks = wrap.querySelectorAll('.kgf-tk');
+  var mq = window.matchMedia ? window.matchMedia('(max-width:600px)') : null;
+  function fitTk(){
+    var mo = mq && mq.matches;
+    var box = document.createElement('div');
+    box.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;display:flex;width:max-content';
+    wrap.appendChild(box);
+    Array.prototype.forEach.call(tks, function(tk){
+      tk.style.width = '';
+      if(!mo) return;
+      var c = tk.cloneNode(true);
+      box.appendChild(c);
+      tk.style.width = Math.ceil(c.getBoundingClientRect().width) + 2 + 'px';
+    });
+    wrap.removeChild(box);
+    Array.prototype.forEach.call(wrap.querySelectorAll('.kgf-tick-track'), function(t){
+      t.style.animation = 'none'; void t.offsetWidth; t.style.animation = '';
     });
   }
+  fitTk();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitTk);
+  window.addEventListener('load', fitTk);
+  var fitT;
+  window.addEventListener('resize', function(){ clearTimeout(fitT); fitT = setTimeout(fitTk, 200); });
 
   /* 히어로: 25% 이상 화면에 들어오면 타이틀 진입(1회) + 티커 흐름, 벗어나면 티커만 멈춤 */
   var hero = wrap.querySelector('.kgf-hero');
