@@ -479,6 +479,8 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   .contents_div .kgf-tk--tag{ border-radius:4.2px 11px 11px 4.2px; }
   /* 사파리 쿠폰 잘림 방지 : 번호칸 폭을 width로 고정 */
   .contents_div .kgf-tk-no{ width:var(--tk-stub); }
+  /* 스크롤 중 티커 끊김 방지 : 흐르는 줄을 별도 레이어로 */
+  .contents_div .kgf-tick-track{ will-change:transform; -webkit-backface-visibility:hidden; backface-visibility:hidden; }
   .contents_div .kgf-h3{ white-space:nowrap; }
   .contents_div .kgf-nav li + li::before{ height:10px; margin-top:-5px; }
   .contents_div .kgf-head{ gap:10px; margin-bottom:20px; }
@@ -839,8 +841,14 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   fitTk();
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitTk);
   window.addEventListener('load', fitTk);
-  var fitT;
-  window.addEventListener('resize', function(){ clearTimeout(fitT); fitT = setTimeout(fitTk, 200); });
+  /* 모바일 스크롤 시 주소창이 접히며 resize(높이만 변화)가 계속 발생 → 티커가 처음으로 되감기던 문제
+     → 가로 폭이 바뀔 때만 다시 계산 */
+  var fitT, lastW = window.innerWidth;
+  window.addEventListener('resize', function(){
+    if(window.innerWidth === lastW) return;
+    lastW = window.innerWidth;
+    clearTimeout(fitT); fitT = setTimeout(fitTk, 200);
+  });
 
   /* 히어로: 25% 이상 화면에 들어오면 타이틀 진입(1회) + 티커 흐름, 벗어나면 티커만 멈춤 */
   var hero = wrap.querySelector('.kgf-hero');
